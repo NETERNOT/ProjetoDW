@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -11,9 +13,9 @@ app.use(express.json());
 
 // Database Connection
 // Ensure MongoDB is running on your machine
-mongoose.connect('mongodb://127.0.0.1:27017/projetodw')
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error(err));
+mongoose.connect(MONGO_URI)
+  .then(() => console.log('MongoDB Cloud Connected'))
+  .catch(err => console.error('Connection Error:', err))
 
 // Routes Placeholder
 app.get('/', (req, res) => {

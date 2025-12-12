@@ -38,3 +38,9 @@ cd projetodw
 
 # Install all dependencies (Frontend, Backend, and Electron)
 npm install
+```
+
+### Running
+
+```bash
+npm start
