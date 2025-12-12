@@ -31,7 +31,7 @@ Clone the repository and install the dependencies:
 
 ```bash
 # Clone the repository (if you haven't already)
-git clone <https://github.com/NETERNOT/ProjetoDW>
+git clone https://github.com/NETERNOT/ProjetoDW
 
 # Go into the project folder
 cd ProjetoDW
