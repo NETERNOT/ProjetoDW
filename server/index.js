@@ -1,5 +1,4 @@
-require('dotenv').config();
-
+require('dotenv').config(); // Load variables from .env file
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,22 +6,29 @@ const cors = require('cors');
 const app = express();
 const PORT = 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Database Connection
-// Ensure MongoDB is running on your machine
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('MongoDB Cloud Connected'))
-  .catch(err => console.error('Connection Error:', err))
+// FIXED: We check if the environment variable exists, otherwise we warn the user
+const dbConnection = process.env.MONGO_URI;
 
-// Routes Placeholder
+if (!dbConnection) {
+  console.error("❌ FATAL ERROR: MONGO_URI is not defined.");
+  console.error("Please check your .env file or hardcode the string in server/index.js");
+}
+
+console.log("Attempting to connect to MongoDB...");
+
+mongoose.connect(dbConnection || "") 
+  .then(() => console.log('✅ MongoDB Cloud Connected Successfully!'))
+  .catch(err => {
+    console.error('❌ MongoDB Connection Error:', err.message);
+  });
+
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-// Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
