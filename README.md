@@ -1,42 +1,49 @@
-# ProjetoDW
+# MyCookBook
 
-This website was developed for the "Information Visualization" course unit of the Master's in Design and Multimedia of the Faculty of Sciences and Technology of the University of Coimbra. This project was made by Estêvão Abreu and Nuno Pinto.
+This project was developed for the **"Information Visualization"** course unit of the **Master's in Design and Multimedia** at the **Faculty of Sciences and Technology of the University of Coimbra (FCTUC)**.
 
-The application runs as a desktop app using Electron, with a React frontend and a Node/Express backend connected to MongoDB.
+**Authors:**
+
+* Estêvão Abreu
+* Nuno Pinto
+
+---
 
 ## Tech Stack
 
-* **Frontend:** React.js
-* **Desktop Wrapper:** Electron
-* **Backend:** Node.js + Express
-* **Database:** MongoDB (Mongoose)
+This project was built using a custom architecture without heavy frameworks like Express or Mongoose to demonstrate core understanding of HTTP and Database drivers.
+
+* **Desktop Environment:** Electron
+* **Frontend:** React.js (Custom implementation without Create-React-App)
+* **Backend:** Node.js (Native `http` module)
+* **Database:** MongoDB (Native `mongodb` driver)
+* **Styling:** CSS3 (Flexbox/Grid)
 
 ---
 
 ## Getting Started
 
-Follow these steps to set up the project locally.
+Follow these steps to set up and run the project locally.
 
 ### 1. Prerequisites
 
-Before running the project, ensure you have the following installed on your machine:
+Ensure you have the following installed:
 
 * **Node.js** (LTS version)
-
-* **MongoDB** (Community Server)
+* **Git**
 
 ### 2. Installation
 
 Clone the repository and install the dependencies:
 
 ```bash
-# Clone the repository (if you haven't already)
+# Clone the repository
 git clone https://github.com/NETERNOT/ProjetoDW
 
 # Go into the project folder
 cd ProjetoDW
 
-# Install all dependencies (Frontend, Backend, and Electron)
+# Install dependencies
 npm install
 ```
 
@@ -44,3 +51,4 @@ npm install
 
 ```bash
 npm start
+```
