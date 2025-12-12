@@ -31,16 +31,16 @@ Clone the repository and install the dependencies:
 
 ```bash
 # Clone the repository (if you haven't already)
-git clone <repository-url>
+git clone <https://github.com/NETERNOT/ProjetoDW>
 
 # Go into the project folder
-cd projetodw
+cd ProjetoDW
 
 # Install all dependencies (Frontend, Backend, and Electron)
 npm install
 ```
 
-### Running
+### 3. Running
 
 ```bash
 npm start
