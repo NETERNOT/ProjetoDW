@@ -56,7 +56,7 @@
     margin: 0.5em 0;
 }
 
-.info {
+.recipeCardBottom .info {
     display: flex;
     flex-direction: row;
 }
