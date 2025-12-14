@@ -1,19 +1,19 @@
 .recipeGrid {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    column-width: 300px;
+    column-gap: 15px;
 }
 
 .recipeCard {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 1em;
     overflow: hidden;
-    width: 32%;
-    max-width: 33vw;
+    height: auto;
     display: flex;
     flex-direction: column;
     position: relative;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
 }
 
 .recipeCard:hover {
