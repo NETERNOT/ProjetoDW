@@ -1,8 +1,9 @@
 :root {
     --orange: #ff6900;
-    --white: #eaeaea;
+    --white: #ffffff;
     --black: #151515;
     --gray: #6a6a6a;
+    --lightgray: #cccccc;
 }
 
 .lato-thin {

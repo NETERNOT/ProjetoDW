@@ -21,13 +21,16 @@ function App() {
     };
 
     return (
-        <div className="recipeViewContainer">
+        <div className="recipeContainer">
             {loading ? (
                 <p>Loading delicious recipes...</p>
             ) : (
                 <div className="recipeGrid">
-                    <RecipeView 
-                        recipe={recipes[0]} />
+                    {recipes.map((recipe) => (
+                        <RecipeCard 
+                        key={recipe._id}
+                        recipe={recipe} />
+                    ))}
                     {recipes.length === 0 && (
                         <p>No recipes found.</p>
                     )}

@@ -1,4 +1,11 @@
+.recipeContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+}
+
 .recipeGrid {
+    width: 95%;
     column-width: 300px;
     column-gap: 15px;
 }
