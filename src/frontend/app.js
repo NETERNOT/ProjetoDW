@@ -1,13 +1,19 @@
 const { useState, useEffect } = React;
 
-import WindowControls from "./components/windowControls"
-
 function App() {
 
+    const demoUser = {
+        username:"Username",
+        bio:"I love cock",
+        savedRecipes:[{},{},{},{},{}],
+        createdRecipes:[{},{},{},{},{}]
+    }
+
     return (
-        <div>
-            <WindowControls/>
-        </div>
+        <>
+            <div className="windowControl">MyCookBook</div>
+            <UserProfile user={demoUser}></UserProfile>
+        </>
     );
 }
 
