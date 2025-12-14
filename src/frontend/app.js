@@ -4,7 +4,7 @@ function App() {
 
     const demoUser = {
         username:"Username",
-        bio:"I love cock",
+        bio:"I love cook",
         savedRecipes:[{},{},{},{},{}],
         createdRecipes:[{},{},{},{},{}]
     }
@@ -12,7 +12,7 @@ function App() {
     return (
         <>
             <div className="windowControl">MyCookBook</div>
-            <UserProfile user={demoUser}></UserProfile>
+            <ProfileView user={demoUser}></ProfileView>
         </>
     );
 }

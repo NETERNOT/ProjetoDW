@@ -1,4 +1,4 @@
-function UserProfile({ user }) {
+function UserProfileCard({ user }) {
   console.log("sajkndbiauhsdoi")
 
   const savedRecipesCount = user.savedRecipes.length
