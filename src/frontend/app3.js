@@ -21,7 +21,7 @@ function App() {
     };
 
     return (
-        <div className="recipeContainer">
+        <div className="recipeHomeContainer">
             {loading ? (
                 <p>Loading delicious recipes...</p>
             ) : (

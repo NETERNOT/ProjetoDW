@@ -25,7 +25,7 @@ function App() {
             {loading ? (
                 <p>Loading delicious recipes...</p>
             ) : (
-                <div className="recipeGrid">
+                <div>
                     <RecipeView 
                         recipe={recipes[0]} />
                     {recipes.length === 0 && (
