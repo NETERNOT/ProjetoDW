@@ -1,0 +1,62 @@
+.recipeCard {
+    border: 1px solid var(--black);
+    border-radius: 1em;
+    overflow: hidden;
+    max-width: 33vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipeCardBottom {
+    color: var(--black);
+}
+
+.recipeCardTop img {
+    width: 100%;
+    height: auto;
+    top: 0;
+    right: 0;
+}
+
+.recipeCardTop .material-icons {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    font-size: 2em;
+    color: var(--orange);
+    cursor: pointer;
+}
+
+.tags {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.tags span {
+    background-color: var(--white);
+    color: var(--black);
+    padding: 0.2em 0.5em;
+    border-radius: 0.5em;
+    font-size: 1em;
+}
+
+.recipeCardBottom h3 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.recipeCardBottom p {
+    font-size: 1em;
+    margin: 0.5em 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+}

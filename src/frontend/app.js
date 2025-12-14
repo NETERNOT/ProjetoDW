@@ -31,7 +31,9 @@ function App() {
             ) : (
                 <div className="recipe-grid">
                     {recipes.map((recipe) => (
-                        <RecipeCard recipe={recipe} />
+                        <RecipeCard 
+                        key={recipe._id}
+                        recipe={recipe} />
                     ))}
                     {recipes.length === 0 && (
                         <p>No recipes found.</p>

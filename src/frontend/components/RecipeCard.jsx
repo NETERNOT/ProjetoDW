@@ -9,12 +9,13 @@ function RecipeCard({ recipe }) {
                     alt={recipe.title}
                 />
                 <div>
-                    <svg></svg>
+                    <span className="material-icons">bookmark</span>
                 </div>
-                {recipe.tags.map(tag => (
-                    <div className="">
-                        <span>{tag}</span>
-                    </div>))}
+                <div className="tags">
+                    {recipe.tags.map((tag, index) => (
+                        <span key={index}>{tag}</span>
+                    ))}
+                </div>
             </div>
 
             <div className="recipeCardBottom">
@@ -23,13 +24,13 @@ function RecipeCard({ recipe }) {
                     {recipe.description}
                 </p>
 
-                <div>
+                <div className="info">
                     <div>
-                        <svg></svg>
+                        <span className="material-icons">schedule</span>
                         <span>{recipe.cookingTime}</span>
                     </div>
                     <div>
-                        <svg></svg>
+                        <span className="material-icons">group</span>
                         <span>{recipe.servings}</span>
                     </div>
                 </div>
