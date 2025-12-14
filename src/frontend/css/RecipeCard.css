@@ -1,15 +1,27 @@
-.recipeCard {
-    border: 1px solid var(--black);
-    border-radius: 1em;
-    overflow: hidden;
-    max-width: 33vw;
-    position: relative;
+.recipeGrid {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-.recipeCardBottom {
-    color: var(--black);
+.recipeCard {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 1em;
+    overflow: hidden;
+    width: 32%;
+    max-width: 33vw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.recipeCard:hover {
+    cursor: pointer;
+}
+
+.recipeCardTop {
+    position: relative;
 }
 
 .recipeCardTop img {
@@ -19,19 +31,40 @@
     right: 0;
 }
 
-.recipeCardTop .material-icons {
+.recipeCardTopOverlay {
     position: absolute;
-    top: 0.5em;
-    left: 0.5em;
-    font-size: 2em;
-    color: var(--orange);
+    padding-top: 1em;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.recipeCardTop .material-icons {
+    margin: 0;
+    margin-left: 0.7em;
+    padding: 0.3em;
+    border-radius: 50%;
+    font-size: 1.5em;
+    color: var(--white);
+    -webkit-text-stroke: 2px rgba(0, 0, 0, 0.2);
+    background-color: var(--white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.recipeCardTop .material-icons:hover {
+    background-color: var(--gray);
+    -webkit-text-stroke: 0px;
+    color: var(--white);
     cursor: pointer;
 }
 
 .tags {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+    margin: 0;
+    margin-right: 1em;
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -39,24 +72,47 @@
 }
 
 .tags span {
+    margin: 0;
     background-color: var(--white);
     color: var(--black);
-    padding: 0.2em 0.5em;
+    padding: 0.3em 0.8em;
     border-radius: 0.5em;
-    font-size: 1em;
+    font-size: 0.85em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.recipeCardBottom {
+    padding: 1em;
 }
 
 .recipeCardBottom h3 {
-    font-size: 2em;
+    color: var(--black);
+    font-size: 1.2em;
     margin: 0;
 }
 
 .recipeCardBottom p {
-    font-size: 1em;
-    margin: 0.5em 0;
+    color: var(--gray);
+    font-size: 0.9em;
+    margin-top: 0.5em;
 }
 
 .recipeCardBottom .info {
+    margin-top: 1.3em;
+    color: var(--gray);
+    font-size: 0.9em;
     display: flex;
     flex-direction: row;
+    gap: 2.5em;
+}
+
+.recipeCardBottom .info div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.recipeCardBottom .info span:first-child {
+    font-size: 1.2em;
 }

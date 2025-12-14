@@ -8,13 +8,13 @@ function RecipeCard({ recipe }) {
                     src={recipe.picture}
                     alt={recipe.title}
                 />
-                <div>
+                <div className="recipeCardTopOverlay">
                     <span className="material-icons">bookmark</span>
-                </div>
-                <div className="tags">
-                    {recipe.tags.map((tag, index) => (
-                        <span key={index}>{tag}</span>
-                    ))}
+                    <div className="tags">
+                        {recipe.tags.map((tag, index) => (
+                            <span key={index}>{tag}</span>
+                        ))}
+                    </div>
                 </div>
             </div>
 
@@ -27,7 +27,7 @@ function RecipeCard({ recipe }) {
                 <div className="info">
                     <div>
                         <span className="material-icons">schedule</span>
-                        <span>{recipe.cookingTime}</span>
+                        <span>{recipe.cookingTime} min</span>
                     </div>
                     <div>
                         <span className="material-icons">group</span>

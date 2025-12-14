@@ -22,14 +22,10 @@ function App() {
 
     return (
         <div className="container">
-            <header className="app-header">
-                <h1>MyCookBook</h1>
-            </header>
-
             {loading ? (
                 <p>Loading delicious recipes...</p>
             ) : (
-                <div className="recipe-grid">
+                <div className="recipeGrid">
                     {recipes.map((recipe) => (
                         <RecipeCard 
                         key={recipe._id}
