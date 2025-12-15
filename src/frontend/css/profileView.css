@@ -6,8 +6,18 @@
 
     &>label{
         padding-top: 1rem;
+
+        &>h2{
+            display: flex;
+            align-items: center;
+
+            &>span{
+                font-size: 2rem;
+                color: var(--orange);
+            }
+        }
     }
-    & .savedRecipesContainer {
+    &>.savedRecipesContainer {
         width: 100%;
         padding: 2rem;
         display: flex;
@@ -20,7 +30,7 @@
         border: solid 1px var(--gray);
         border-radius: 8px;
 
-        & .mockRecipe {
+        &>.mockRecipe {
             display: inline-block;
             width: 7rem;
             aspect-ratio: 1;

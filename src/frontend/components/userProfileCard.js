@@ -7,7 +7,7 @@ function UserProfileCard({ user }) {
   return (
       <div className="userInfoContainer">
         <div>
-          <img></img>
+          <div className="iconContainer"><span className="material-icons">person</span></div>
           <div>
             <h2>{user.username}</h2>
             <p>{user.bio}</p>

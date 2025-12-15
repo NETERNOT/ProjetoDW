@@ -1,9 +1,9 @@
 /*@import url("./general.css");*/
 
-.userInfoContainer{
+.userInfoContainer {
     width: 100%;
     padding: 2rem;
-    display:flex;
+    display: flex;
     flex-direction: column;
     gap: 3rem;
 
@@ -12,41 +12,47 @@
     border: solid 1px var(--gray);
     border-radius: 8px;
 
-    &>:first-child{
+    &>:first-child {
         width: 100%;
         display: flex;
         flex-direction: row;
         gap: 1rem;
         align-items: center;
 
-        & img{
+        &>.iconContainer {
             width: 4rem;
             aspect-ratio: 1;
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--orange);
-            border-radius:50%;
+            border-radius: 50%;
 
+            &>.material-icons {
+                color: var(--black);
+                font-size: 2rem;
+            }
         }
     }
-    
-    &>.stats{
+
+    &>.stats {
         width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
         gap: 1rem;
 
-        &>div{
+        &>div {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: .5rem;
 
-            &>*{
+            &>* {
                 width: max-content;
             }
 
-            &>:first-child{
+            &>:first-child {
                 color: var(--orange);
             }
         }
