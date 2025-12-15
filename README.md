@@ -11,13 +11,11 @@ This project was developed for the **"Information Visualization"** course unit o
 
 ## Tech Stack
 
-This project was built using a custom architecture without heavy frameworks like Express or Mongoose to demonstrate core understanding of HTTP and Database drivers.
-
 * **Desktop Environment:** Electron
-* **Frontend:** React.js (Custom implementation without Create-React-App)
-* **Backend:** Node.js (Native `http` module)
-* **Database:** MongoDB (Native `mongodb` driver)
-* **Styling:** CSS3 (Flexbox/Grid)
+* **Frontend:** React.js
+* **Backend:** Node.js
+* **Database:** MongoDB
+* **Styling:** CSS3
 
 ---
 
