@@ -21,17 +21,12 @@ function App() {
     };
 
     return (
-        <div className="recipeViewContainer">
+        <div className="container">
             {loading ? (
                 <p>Loading delicious recipes...</p>
             ) : (
-                <div>
-                    <RecipeView 
-                        recipe={recipes[0]} />
-                    {recipes.length === 0 && (
-                        <p>No recipes found.</p>
-                    )}
-                </div>
+                // <HomeView recipes={recipes} />
+                <RecipeView recipe={recipes[0]} />
             )}
         </div>
     );
