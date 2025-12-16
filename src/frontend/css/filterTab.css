@@ -1,14 +1,17 @@
 .filterTab {
     width: 95%;
     border: 1px solid var(--lightgray);
-    border-radius: 3em;
-    padding: 1em;
+    border-radius: 1.2em;
+    margin-bottom: 1.2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .searchBar {
     position: relative;
     display: flex;
     align-items: center;
+    margin-left: 1em;
+    margin-top: 0.8em;
 }
 
 .searchBar span:first-child {
@@ -24,12 +27,24 @@
     color: var(--lightgray);
     width: 50%;
     height: 2em;
-    border-radius: 2.5em;
+    border-radius: 0.75em;
     padding-left: 2.5em;
 }
 
-.filterBar, .filterLabel { 
+.filterBar {
+    margin-top: 0.4em;
+    margin-bottom: 0.5em;
+}
+
+.filterBar,
+.filterLabel {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 0.5em;
+}
+
+.filterBar .servings input, .filterBar .cookingTime input {
+    width: 40px;
+    height: 25px;
 }
