@@ -1,0 +1,35 @@
+.filterTab {
+    width: 95%;
+    border: 1px solid var(--lightgray);
+    border-radius: 3em;
+    padding: 1em;
+}
+
+.searchBar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchBar span:first-child {
+    position: absolute;
+    left: 0.8em;
+    color: var(--lightgray);
+    font-size: 1.3em;
+}
+
+.searchBar input {
+    border: 1px solid var(--lightgray);
+    font-size: 1em;
+    color: var(--lightgray);
+    width: 50%;
+    height: 2em;
+    border-radius: 2.5em;
+    padding-left: 2.5em;
+}
+
+.filterBar, .filterLabel { 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

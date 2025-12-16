@@ -25,8 +25,8 @@ function App() {
             {loading ? (
                 <p>Loading delicious recipes...</p>
             ) : (
-                // <HomeView recipes={recipes} />
-                <RecipeView recipe={recipes[0]} />
+                <HomeView recipes={recipes} />
+                // <RecipeView recipe={recipes[0]} />
             )}
         </div>
     );
