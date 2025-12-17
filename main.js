@@ -29,8 +29,6 @@ function createMainWindow() {
     };
 
     loadContent();
-
-    mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(createMainWindow);

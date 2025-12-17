@@ -1,7 +1,8 @@
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe, onSelect }) {
     return (
         <div
             className="recipeCard"
+            onClick={onSelect}
         >
             <div className="recipeCardTop">
                 <img

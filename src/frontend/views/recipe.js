@@ -1,6 +1,5 @@
-function RecipeView({ recipe }) {
-
+function RecipeView({ recipe, onBack }) {
     return (
-        <RecipeDetails recipe={recipe} />
+        <RecipeDetails recipe={recipe} onBack={onBack} />
     );
 }
