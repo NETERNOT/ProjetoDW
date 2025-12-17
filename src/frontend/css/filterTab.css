@@ -87,3 +87,7 @@
 .clearButton:hover {
     cursor: pointer;
 }
+
+.clearButton.hidden {
+    display: none;
+}
