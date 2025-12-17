@@ -15,10 +15,10 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^17.2.3",
-    "electron": "^39.2.4",
     "mongodb": "^7.0.0"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.4"
   }
 }

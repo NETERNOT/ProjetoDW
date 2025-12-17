@@ -15,13 +15,13 @@ const mimeTypes = {
     '.js': 'text/javascript',
     '.jsx': 'text/javascript',
     '.css': 'text/css',
-    '.png': 'image/png', 
+    '.png': 'image/png',
     '.jpg': 'image/jpeg',
     '.svg': 'image/svg+xml'
 };
 
 const server = http.createServer(async (incomingRequest, serverResponse) => {
-    
+
     serverResponse.setHeader('Access-Control-Allow-Origin', '*');
     serverResponse.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     serverResponse.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -35,7 +35,7 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
     const { url, method } = incomingRequest;
 
     if (url.startsWith('/api')) {
-        
+
         if (url === '/api/recipes' && method === 'GET') {
             return recipeController.getAllRecipes(incomingRequest, serverResponse);
         }
@@ -47,7 +47,7 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
 
     let requestedFilePath = url === '/' ? 'index.html' : url;
     if (requestedFilePath.startsWith('/')) requestedFilePath = requestedFilePath.slice(1);
-    
+
     const fullFilePath = path.join(FRONTEND_DIRECTORY_PATH, requestedFilePath);
 
     fileSystem.readFile(fullFilePath, (error, fileContent) => {
