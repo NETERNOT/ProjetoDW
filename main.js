@@ -19,7 +19,7 @@ function createMainWindow() {
         }
     });
 
-    const url = 'http://localhost:8000';
+    const url = 'http://localhost:80';
 
     const loadContent = () => {
         mainWindow.loadURL(url).catch((err) => {

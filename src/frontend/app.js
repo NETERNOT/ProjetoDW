@@ -11,7 +11,7 @@ function App() {
 
     const fetchRecipes = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/recipes');
+            const response = await fetch('http://localhost:80/api/recipes');
             const data = await response.json();
             setRecipes(data);
             setLoading(false);
