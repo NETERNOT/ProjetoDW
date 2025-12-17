@@ -7,7 +7,7 @@ require('dotenv').config();
 const { connectToDatabase } = require('./database');
 const recipeController = require('./controllers/recipeController');
 
-const SERVER_PORT = process.env.PORT || 80;
+const SERVER_PORT = process.env.PORT || 8000;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
 
 const mimeTypes = {

@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node src/backend/server.js",
     "electron": "electron .",
-    "browser": "npx open-cli http://localhost:80",
+    "browser": "npx open-cli http://localhost:8000",
     "start": "node src/backend/server.js",
     "dev": "concurrently \"npm run server\" \"npm run electron\" \"npm run browser\""
   },
