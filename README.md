@@ -2,6 +2,8 @@
 
 This project was developed for the **"Web Development"** course unit of the **Master's in Design and Multimedia** at the **Faculty of Sciences and Technology of the University of Coimbra (FCTUC)**.
 
+MyCookBook is a web application/social network that allows users to submit and share cooking recipes, as well as save their favorite ones to their profile.
+
 **Authors:**
 
 * Estêvão Abreu
@@ -48,5 +50,5 @@ npm install
 ### 3. Running
 
 ```bash
-npm start
+npm run dev
 ```

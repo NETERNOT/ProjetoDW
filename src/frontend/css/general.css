@@ -1,9 +1,9 @@
 :root {
-    --orange: #ff6900;
-    --white: #ffffff;
-    --black: #151515;
-    --gray: #6a6a6a;
-    --lightgray: #cccccc;
+  --orange: #ff6900;
+  --white: #ffffff;
+  --black: #151515;
+  --gray: #6a6a6a;
+  --lightgray: #cccccc;
 }
 
 .lato-thin {
@@ -66,12 +66,13 @@
   font-style: italic;
 }
 
-html, body {
-    font-family: "Lato", sans-serif;
+html,
+body {
+  font-family: "Lato", sans-serif;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .container {
