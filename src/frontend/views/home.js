@@ -1,4 +1,4 @@
-function HomeView({ recipes }) {
+function HomeView({ recipes, onSelect }) {
     const tags = [...new Set(recipes.flatMap(recipe => recipe.tags))];
     
     return (
@@ -8,7 +8,8 @@ function HomeView({ recipes }) {
                 {recipes.map((recipe) => (
                     <RecipeCard
                         key={recipe._id}
-                        recipe={recipe} />
+                        recipe={recipe}
+                        onSelect={() => onSelect(recipe._id)} />
                 ))}
                 {recipes.length === 0 && (
                     <p>No recipes found.</p>

@@ -1,8 +1,8 @@
-function RecipeDetails({ recipe }) {
+function RecipeDetails({ recipe, onBack }) {
 
     return (
         <div className="recipeDetailsContainer">
-            <a>
+            <a onClick={onBack}>
                 <span className="material-icons">arrow_back</span>
                 <span>Home</span>
             </a>
