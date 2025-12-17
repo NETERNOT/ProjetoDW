@@ -1,6 +1,6 @@
 # MyCookBook
 
-This project was developed for the **"Information Visualization"** course unit of the **Master's in Design and Multimedia** at the **Faculty of Sciences and Technology of the University of Coimbra (FCTUC)**.
+This project was developed for the **"Web Development"** course unit of the **Master's in Design and Multimedia** at the **Faculty of Sciences and Technology of the University of Coimbra (FCTUC)**.
 
 **Authors:**
 
