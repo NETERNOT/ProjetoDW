@@ -2,10 +2,12 @@ const http = require('http');
 const fileSystem = require('fs');
 const path = require('path');
 
+require('dotenv').config();
+
 const { connectToDatabase } = require('./database');
 const recipeController = require('./controllers/recipeController');
 
-const SERVER_PORT = 8000;
+const SERVER_PORT = process.env.PORT || 8000;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
 
 const mimeTypes = {
