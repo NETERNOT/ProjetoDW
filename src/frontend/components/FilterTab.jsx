@@ -29,9 +29,9 @@ function FilterTab({ tags }) {
                     -
                     <input type="number" max="0" placeholder="Max"></input>
                 </div>
-                <button className="applyButton">
+                <button className="clearButton">
                     <span className="material-icons">close</span>
-                    <span>Clear</span>
+                    <span>Clear all</span>
                 </button>
             </div>
 
