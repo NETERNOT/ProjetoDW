@@ -1,7 +1,14 @@
 :root {
     --orange: #ff6900;
     --white: #eaeaea;
+    --gray: #d0d0d0;
     --black: #151515;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 .lato-thin {

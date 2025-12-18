@@ -1,0 +1,73 @@
+.loginViewContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100vw;
+    height: 100vh;
+}
+
+.loginForm {
+    width: 60%;
+    padding: 4rem 7rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    & h1 {
+        font-size: 5rem;
+        display: flex;
+        align-items: center;
+
+        &>span{
+            font-size: 5rem;
+            color: var(--orange);
+        }
+    }
+
+    &>div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        align-items: center;
+
+        &>h2 {
+            font-size: 3.5rem;
+        }
+
+        &>button{
+            outline: none;
+            border: none;
+            padding: 1rem 2rem;
+            background-color: black;
+            color: var(--white);
+            font-size: 1.2rem;
+            border-radius: 1rem;
+            transition: all .5s ease;
+
+            &:disabled{
+                background-color: var(--gray);
+                cursor:not-allowed;
+                border-radius: .5rem;
+            }
+        }
+
+        &>a{
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+}
+
+.loginViewContainer>.imageContainer {
+    flex: 1;
+    overflow: hidden;
+
+    &>img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
