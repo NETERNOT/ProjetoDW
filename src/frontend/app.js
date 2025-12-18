@@ -2,8 +2,9 @@ const { useState, useEffect } = React;
 
 function App() {
   const [recipes, setRecipes] = useState([]);
+  const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("signup");
+  const [view, setView] = useState("login");
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -31,6 +32,21 @@ function App() {
       }
     };
 
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/api/users");
+        const data = await response.json();
+        setUsers(data);
+        setLoading(false);
+
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchUsers()
+    console.log(users)
     fetchRecipes();
   }, [recipes.length]);
 
@@ -45,6 +61,7 @@ function App() {
         <LoginView
           view={view}
           setView={setView}
+          users={users}
           email={email}
           setEmail={setEmail}
           username={username}

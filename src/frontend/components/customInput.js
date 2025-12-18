@@ -13,9 +13,9 @@ function CustomInput(props){
                 value={value}
                 onChange={(e)=>{
                     onChange(e);
-                    setTouched(false)
                 }}
-                onBlur={()=>setTouched(true)}
+                onBlur={(e)=>{
+                    e.target.value.length===0? setTouched(false): setTouched(true)}}
                 required
               ></input>
             </label>

@@ -5,6 +5,7 @@ const path = require('path');
 const { connectToDatabase } = require('./database');
 // IMPORT THE CONTROLLER
 const recipeController = require('./controllers/recipeController');
+const userController = require('./controllers/userController');
 
 const SERVER_PORT = 8000;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
@@ -42,6 +43,10 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
         
         if (url === '/api/seed' && method === 'GET') {
             return recipeController.seedDatabase(incomingRequest, serverResponse);
+        }
+
+        if (url === '/api/users' && method === 'GET') {
+            return userController.getAllUsers(incomingRequest, serverResponse);
         }
 
         // API 404

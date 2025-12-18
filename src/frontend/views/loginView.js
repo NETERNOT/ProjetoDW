@@ -4,6 +4,7 @@ function LoginView(props) {
   const {
     view,
     setView,
+    users,
     email,
     setEmail,
     username,
@@ -14,6 +15,46 @@ function LoginView(props) {
     setConfirmPassword,
     imageSrc,
   } = props;
+
+  const isEmailFormatValid = validateEmail(email);
+  const isEmailAvailable =
+    view === "signup" && isEmailFormatValid
+      ? validateEmailAvailability(email, users)
+      : true;
+
+  let emailErrorMessage = "Must be a valid email address";
+  if (view === "signup" && !isEmailAvailable) {
+    emailErrorMessage = "This email is already registered";
+  }
+
+  const isUsernameFormatValid = validateUsername(username);
+  const isUsernameAvailable = isUsernameFormatValid
+    ? validateUsernameAvailability(username, users)
+    : true;
+
+  let usernameErrorMessage =
+    "Username must have at least 8 characters, and no special characters";
+  if (!isUsernameAvailable) {
+    usernameErrorMessage = "This username is already taken.";
+  }
+
+  let isSubmitDisabled =
+  !validatePassword(password) ||
+  !validateEmail(email) ||
+  email.length === 0 ||
+  password.length === 0;
+
+if (view === "signup") {
+  isSubmitDisabled =
+    isSubmitDisabled ||
+    password !== confirmPassword ||
+    !isUsernameFormatValid ||
+    !isUsernameAvailable ||
+    !isEmailAvailable ||
+    username.length === 0 ||
+    confirmPassword.length === 0;
+}
+
 
   return (
     <div className="loginViewContainer">
@@ -29,11 +70,11 @@ function LoginView(props) {
             label="Email"
             type="email"
             value={email}
-            isValid={validateEmail(email)}
+            isValid={isEmailFormatValid && isEmailAvailable}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            errorMessage="Must be a valid email address"
+            errorMessage={emailErrorMessage}
           ></CustomInput>
 
           {view === "signup" && (
@@ -41,11 +82,11 @@ function LoginView(props) {
               label="Username"
               type="text"
               value={username}
-              isValid={validateUsername(username)}
+              isValid={isUsernameFormatValid && isUsernameAvailable}
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
-              errorMessage="This username is not available"
+              errorMessage={usernameErrorMessage}
             ></CustomInput>
           )}
 
@@ -57,7 +98,7 @@ function LoginView(props) {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            errorMessage="Must be a valid email address"
+            errorMessage="Password must have at least 8 characters, one number and one special character"
           ></CustomInput>
 
           {view === "signup" && (
@@ -77,12 +118,7 @@ function LoginView(props) {
 
           <button
             type="submit"
-            disabled={
-              !validatePassword(password) ||
-              !validateEmail(email) ||
-              email.length === 0 ||
-              password.length === 0
-            }
+            disabled={isSubmitDisabled}
           >
             Login
           </button>
@@ -134,12 +170,21 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
+function validateEmailAvailability(email, users) {
+  return users.find((user) => user.email === email) ? false : true;
+}
+
 function validatePassword(password) {
   const regex = /^(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}$/;
   return regex.test(password);
 }
 
 function validateUsername(username) {
+  const regex = /^[a-zA-Z0-9_]{8,}$/;
+  return regex.test(username);
+}
+
+function validateUsernameAvailability(username, users) {
   //check db for existing usernames
-  return 0;
+  return users.find((user) => user.userName === username) ? false : true;
 }
