@@ -1,0 +1,54 @@
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+
+    &>label>span {
+        position: relative;
+        top: 2rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        width: 100%;
+        padding-left: .5rem;
+        transition: all .2s ease;
+        color: var(--gray);
+        pointer-events: none;
+        height: 1rem;
+        user-select: none;
+    }
+
+    &>label>input {
+        width: 100%;
+        height: 2.5rem;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        padding: .5rem;
+
+        border: none;
+        border-bottom: 2px solid var(--black);
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &:focus-within>label>span,
+    &.filled>label>span {
+        top: 0;
+        font-size: 1rem;
+    }
+
+    &>.errorMessage{
+        position: relative;
+        bottom: .2rem;
+        color: transparent;
+        transition: all .2s ease-in;
+        user-select: none;
+    }
+
+    &.invalid.filled>.errorMessage{
+        color: var(--orange);
+        bottom: 0;
+    }
+}
