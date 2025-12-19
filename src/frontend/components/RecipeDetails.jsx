@@ -4,7 +4,7 @@ function RecipeDetails({ recipe, onBack }) {
         <div className="recipeDetailsContainer">
             <a onClick={onBack}>
                 <span className="material-icons">arrow_back</span>
-                <span>Home</span>
+                <span>Back</span>
             </a>
 
             <div className="recipeContainer">

@@ -55,7 +55,7 @@ function App() {
         if (recipeMatch) {
             const recipeId = recipeMatch[1];
             const recipe = recipes.find(r => r._id.toString() === recipeId.toString());
-            return <RecipeView recipe={recipe} onBack={() => navigate('/')} />;
+            return <RecipeView recipe={recipe} onBack={() => navigate('/home')} />;
         }
         if (currentPath === "/login" || currentPath === "/signup" || currentPath === "login" || currentPath === "signup") {
             return <LoginView
