@@ -80,7 +80,7 @@ function App() {
             />;
         }
         if (currentPath === "/home" || currentPath === "home") {
-            return <HomeView recipes={recipes} onSelect={(id) => navigate(`/recipe/${id}`)} />;
+            return <HomeView recipes={recipes} onSelect={(id) => navigate(`/recipe/${id}`)} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} />;
         }
         if (currentPath === "/new" || currentPath === "new") {
             return <NewView />;

@@ -1,9 +1,9 @@
 function NewRecipe() {
     return (
-        <div className="newRecipe">
-            <h1>Create New Recipe</h1>
-            <p>Share your recipe with our community.</p>
-            <form>
+        <div className="newRecipeContainer hidden">
+            <form className="newRecipe">
+                <h1>Create New Recipe</h1>
+                <p>Share your recipe with our community.</p>
                 <label htmlFor="title">Title *</label>
                 <input type="text" id="title" name="title" />
                 <label htmlFor="description">Description *</label>
