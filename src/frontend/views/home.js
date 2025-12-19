@@ -57,6 +57,7 @@ function HomeView({ recipes, onSelect }) {
                     <p>No recipes found.</p>
                 )}
             </div>
+            <button className="newRecipe" onClick={() => onSelect("new")}>+ New Recipe</button>
         </div>
     );
 }

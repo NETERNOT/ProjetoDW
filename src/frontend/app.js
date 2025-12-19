@@ -45,7 +45,8 @@ function App() {
             return <RecipeView recipe={recipe} onBack={() => navigate('/')} />;
         }
 
-        return <HomeView recipes={recipes} onSelect={(id) => navigate(`/recipe/${id}`)} />;
+        return <NewView />;
+        //return <HomeView recipes={recipes} onSelect={(id) => navigate(`/recipe/${id}`)} />;
     };
 
     return <div className="container">{renderView()}</div>;

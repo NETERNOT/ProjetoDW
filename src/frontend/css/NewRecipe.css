@@ -1,0 +1,11 @@
+.newRecipe {
+    position: fixed;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 60%;
+    height: 92%;
+    background-color: var(--white);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    color: var(--black);
+}

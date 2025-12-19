@@ -1,0 +1,5 @@
+function NewView({ }) {
+    return (
+        <NewRecipe />
+    );
+}
