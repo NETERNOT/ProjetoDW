@@ -1,7 +1,8 @@
-function NewRecipe() {
+function NewRecipe({ onClose }) {
     return (
         <div className="newRecipeContainer hidden">
             <form className="newRecipe">
+                <button type="button" className="closeButton" onClick={onClose}><span className="material-icons">close</span></button>
                 <h1>Create New Recipe</h1>
                 <p>Share your recipe with our community.</p>
                 <label htmlFor="title">Title *</label>
