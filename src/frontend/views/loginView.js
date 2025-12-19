@@ -13,6 +13,7 @@ function LoginView(props) {
     confirmPassword,
     setConfirmPassword,
     imageSrc,
+    navigate,
   } = props;
 
   const [emailAvailable, setEmailAvailable] = useState(null);
@@ -86,43 +87,43 @@ function LoginView(props) {
   }
 
   let isSubmitDisabled =
-  !validatePassword(password) ||
-  !validateEmail(email) ||
-  email.length === 0 ||
-  password.length === 0;
+    !validatePassword(password) ||
+    !validateEmail(email) ||
+    email.length === 0 ||
+    password.length === 0;
 
-if (view === "signup") {
-  isSubmitDisabled =
-    isSubmitDisabled ||
-    password !== confirmPassword ||
-    !isUsernameValid ||
-    !isEmailValid ||
-    username.length === 0 ||
-    confirmPassword.length === 0 ||
-    checkingEmail ||
-    checkingUsername;
-}
+  if (view === "signup") {
+    isSubmitDisabled =
+      isSubmitDisabled ||
+      password !== confirmPassword ||
+      !isUsernameValid ||
+      !isEmailValid ||
+      username.length === 0 ||
+      confirmPassword.length === 0 ||
+      checkingEmail ||
+      checkingUsername;
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const endpoint = view === "login" ? "/api/login" : "/api/signup";
-      const body = view === "login" 
-        ? { email, password } 
+      const body = view === "login"
+        ? { email, password }
         : { email, username: username, password };
-      
+
       const response = await fetch(`http://localhost:8000${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         alert(data.message);
         if (view === "login") {
-          setView("home");
+          navigate("/home");
         } else {
           setView("login");
           setEmail("");

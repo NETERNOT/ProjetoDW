@@ -13,9 +13,6 @@ function App() {
 
     const [loginImage, setLoginImage] = useState(null);
 
-
-
-    // Fetch data when app starts
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
@@ -24,45 +21,84 @@ function App() {
                 setRecipes(data);
                 setLoading(false);
 
-
-                setLoginImage(recipes[Math.floor(Math.random() * recipes.length)]?.picture)
+                if (data.length > 0) {
+                    setLoginImage(data[Math.floor(Math.random() * data.length)]?.picture);
+                }
             } catch (error) {
                 console.error("Error fetching recipes:", error);
                 setLoading(false);
             }
         };
 
+        fetchRecipes();
+    }, []);
 
-        useEffect(() => {
-            fetchRecipes();
-
-            window.addEventListener('popstate', handleLocationChange);
-            return () => window.removeEventListener('popstate', handleLocationChange);
-        }, []);
-
-        const navigate = (path) => {
-            window.history.pushState({}, "", path);
-            setCurrentPath(path);
+    useEffect(() => {
+        const handleLocationChange = () => {
+            setCurrentPath(window.location.pathname);
         };
 
-        const renderView = () => {
-            if (loading) return <p>Loading...</p>;
+        window.addEventListener('popstate', handleLocationChange);
+        return () => window.removeEventListener('popstate', handleLocationChange);
+    }, []);
 
-            const recipeMatch = currentPath.match(/^\/recipe\/([a-zA-Z0-9]+)$/);
+    const navigate = (path) => {
+        window.history.pushState({}, "", path);
+        setCurrentPath(path);
+    };
 
-            if (recipeMatch) {
-                const recipeId = recipeMatch[1];
-                const recipe = recipes.find(r => r._id.toString() === recipeId.toString());
-                return <RecipeView recipe={recipe} onBack={() => navigate('/')} />;
-            }
+    const renderView = () => {
+        if (loading) return <p>Loading...</p>;
 
+        const recipeMatch = currentPath.match(/^\/recipe\/([a-zA-Z0-9]+)$/);
+
+        if (recipeMatch) {
+            const recipeId = recipeMatch[1];
+            const recipe = recipes.find(r => r._id.toString() === recipeId.toString());
+            return <RecipeView recipe={recipe} onBack={() => navigate('/')} />;
+        }
+        if (currentPath === "/login" || currentPath === "/signup" || currentPath === "login" || currentPath === "signup") {
+            return <LoginView
+                view={view}
+                setView={setView}
+                email={email}
+                setEmail={setEmail}
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                confirmPassword={confirmPassword}
+                setConfirmPassword={setConfirmPassword}
+                imageSrc={loginImage}
+                navigate={navigate}
+            />;
+        }
+        if (currentPath === "/home" || currentPath === "home") {
+            return <HomeView recipes={recipes} onSelect={(id) => navigate(`/recipe/${id}`)} />;
+        }
+        if (currentPath === "/new" || currentPath === "new") {
             return <NewView />;
-            //return <HomeView recipes={recipes} onSelect={(id) => navigate(`/recipe/${id}`)} />;
-        };
+        }
 
-        return <div className="container">{renderView()}</div>;
-    }
+        return <LoginView
+            view={view}
+            setView={setView}
+            email={email}
+            setEmail={setEmail}
+            username={username}
+            setUsername={setUsername}
+            password={password}
+            setPassword={setPassword}
+            confirmPassword={confirmPassword}
+            setConfirmPassword={setConfirmPassword}
+            imageSrc={loginImage}
+            navigate={navigate}
+        />;
+    };
+
+    return <div className="container">{renderView()}</div>;
+}
 
 // Render the App
 const root = ReactDOM.createRoot(document.getElementById("react-root"));
-    root.render(<App />);
+root.render(<App />);
