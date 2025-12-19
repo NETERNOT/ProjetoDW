@@ -34,6 +34,19 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
 
     const { url, method } = incomingRequest;
 
+    let body = '';
+    if (method === 'POST') {
+        incomingRequest.on('data', chunk => {
+            body += chunk.toString();
+        });
+        await new Promise(resolve => incomingRequest.on('end', resolve));
+        try {
+            body = JSON.parse(body);
+        } catch (e) {
+            body = {};
+        }
+    }
+
     // 2. API ROUTING LOGIC
     if (url.startsWith('/api')) {
         
@@ -47,6 +60,22 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
 
         if (url === '/api/users' && method === 'GET') {
             return userController.getAllUsers(incomingRequest, serverResponse);
+        }
+
+        if (url === '/api/check-email' && method === 'POST') {
+            return userController.checkEmailAvailability(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/check-username' && method === 'POST') {
+            return userController.checkUsernameAvailability(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/signup' && method === 'POST') {
+            return userController.signup(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/login' && method === 'POST') {
+            return userController.login(incomingRequest, serverResponse, body);
         }
 
         // API 404

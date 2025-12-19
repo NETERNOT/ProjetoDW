@@ -1,8 +1,6 @@
-const { useState } = React;
-
-function CustomInput(props){
+const CustomInput = React.memo(function CustomInput(props){
     const {label, type, value, onChange, errorMessage, isValid} = props;
-    const [touched, setTouched] = useState(false)
+    const [touched, setTouched] = React.useState(false)
 
     return(
         <div className={`inputContainer ${value.length>0  ? "filled" : ""} ${!isValid && touched ? "invalid" : ""}`}>
@@ -22,5 +20,5 @@ function CustomInput(props){
             <p className="errorMessage">{errorMessage}</p>
           </div>
     );
-}
+});
 
