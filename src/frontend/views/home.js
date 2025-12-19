@@ -1,4 +1,4 @@
-function HomeView({ recipes, onSelect }) {
+function HomeView({ recipes, onSelect, onSelectNew, onCloseNew }) {
     const tags = [...new Set(recipes.flatMap(recipe => recipe.tags))];
 
     const [filters, setFilters] = useState({
@@ -57,7 +57,8 @@ function HomeView({ recipes, onSelect }) {
                     <p>No recipes found.</p>
                 )}
             </div>
-            <button className="newRecipeButton">+ New Recipe</button>
+            <button className="newRecipeButton" onClick={onSelectNew}>+ New Recipe</button>
+            <NewRecipe onClose={onCloseNew} />
         </div>
     );
 }
