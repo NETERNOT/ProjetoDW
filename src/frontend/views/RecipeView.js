@@ -1,4 +1,4 @@
-function RecipeDetails({ recipe, onBack }) {
+function RecipeView({ recipe, onBack }) {
 
     return (
         <div className="recipeDetailsContainer">
