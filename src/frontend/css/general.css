@@ -6,6 +6,12 @@
   --lightgray: #cccccc;
 }
 
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
 .lato-thin {
   font-family: "Lato", sans-serif;
   font-weight: 100;
