@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const { connectToDatabase } = require('./database');
 const recipeController = require('./controllers/recipeController');
+const userController = require('./controllers/userController');
 
 const SERVER_PORT = process.env.PORT || 8000;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
@@ -34,11 +35,50 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
 
     const { url, method } = incomingRequest;
 
+    let body = '';
+    if (method === 'POST') {
+        incomingRequest.on('data', chunk => {
+            body += chunk.toString();
+        });
+        await new Promise(resolve => incomingRequest.on('end', resolve));
+        try {
+            body = JSON.parse(body);
+        } catch (e) {
+            body = {};
+        }
+    }
+
     if (url.startsWith('/api')) {
 
         if (url === '/api/recipes' && method === 'GET') {
             return recipeController.getAllRecipes(incomingRequest, serverResponse);
         }
+        
+        if (url === '/api/seed' && method === 'GET') {
+            return recipeController.seedDatabase(incomingRequest, serverResponse);
+        }
+
+        if (url === '/api/users' && method === 'GET') {
+            return userController.getAllUsers(incomingRequest, serverResponse);
+        }
+
+        if (url === '/api/check-email' && method === 'POST') {
+            return userController.checkEmailAvailability(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/check-username' && method === 'POST') {
+            return userController.checkUsernameAvailability(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/signup' && method === 'POST') {
+            return userController.signup(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/login' && method === 'POST') {
+            return userController.login(incomingRequest, serverResponse, body);
+        }
+
+        // API 404
 
         serverResponse.writeHead(404, { 'Content-Type': 'application/json' });
         serverResponse.end(JSON.stringify({ message: 'API Route not found' }));
