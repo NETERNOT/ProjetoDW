@@ -1,7 +1,7 @@
 const { useState, useEffect } = React;
 
 function App() {
-    const [currentPath, setCurrentPath] = useState(window.location.pathname);
+    const [currentPath, setCurrentPath] = useState(window.location.hash.substring(1) || "/login");
     const [recipes, setRecipes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [view, setView] = useState("login");
@@ -35,15 +35,20 @@ function App() {
 
     useEffect(() => {
         const handleLocationChange = () => {
-            setCurrentPath(window.location.pathname);
+            const path = window.location.hash.substring(1);
+            setCurrentPath(path || "/login");
         };
 
-        window.addEventListener('popstate', handleLocationChange);
-        return () => window.removeEventListener('popstate', handleLocationChange);
+        if (!window.location.hash) {
+            window.location.hash = "/login";
+        }
+
+        window.addEventListener('hashchange', handleLocationChange);
+        return () => window.removeEventListener('hashchange', handleLocationChange);
     }, []);
 
     const navigate = (path) => {
-        window.history.pushState({}, "", path);
+        window.location.hash = path;
         setCurrentPath(path);
     };
 
@@ -57,7 +62,8 @@ function App() {
             const recipe = recipes.find(r => r._id.toString() === recipeId.toString());
             return <RecipeView recipe={recipe} onBack={() => navigate('/home')} />;
         }
-        if (currentPath === "/login" || currentPath === "/signup" || currentPath === "login" || currentPath === "signup") {
+
+        if (["/login", "/signup", "login", "signup"].includes(currentPath)) {
             return <LoginView
                 view={view}
                 setView={setView}
@@ -99,6 +105,5 @@ function App() {
     return <div className="container">{renderView()}</div>;
 }
 
-// Render the App
 const root = ReactDOM.createRoot(document.getElementById("react-root"));
 root.render(<App />);

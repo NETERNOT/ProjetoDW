@@ -11,10 +11,10 @@
     color: var(--black);
     display: flex;
     flex-direction: column;
-}
 
-.newRecipe form {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+    &>form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 }
