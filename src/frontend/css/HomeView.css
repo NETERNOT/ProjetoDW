@@ -13,3 +13,10 @@
     cursor: pointer;
     z-index: 1000;
 }
+
+.recipeGrid {
+    margin-top: 7.5em;
+    width: 95%;
+    column-width: 300px;
+    column-gap: 15px;
+}

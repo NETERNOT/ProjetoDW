@@ -18,6 +18,7 @@ function FilterTab({ tags, filters, onFilterChange, onClear }) {
                 <select id="tags"
                     value={filters.tag}
                     onChange={(e) => onFilterChange('tag', e.target.value)}>
+                    <option value="" disabled selected>Tags</option>
                     {tags.map((tag, index) => (
                         <option key={index} value={tag}>{tag}</option>
                     ))}
