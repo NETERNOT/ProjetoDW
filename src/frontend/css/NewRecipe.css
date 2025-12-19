@@ -1,11 +1,20 @@
 .newRecipe {
     position: fixed;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 60%;
-    height: 92%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 85%;
     background-color: var(--white);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     z-index: 1000;
     color: var(--black);
+    display: flex;
+    flex-direction: column;
+}
+
+.newRecipe form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
