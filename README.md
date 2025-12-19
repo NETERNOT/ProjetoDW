@@ -1,6 +1,8 @@
 # MyCookBook
 
-This project was developed for the **"Information Visualization"** course unit of the **Master's in Design and Multimedia** at the **Faculty of Sciences and Technology of the University of Coimbra (FCTUC)**.
+This project was developed for the **"Web Development"** course unit of the **Master's in Design and Multimedia** at the **Faculty of Sciences and Technology of the University of Coimbra (FCTUC)**.
+
+MyCookBook is a web application/social network that allows users to submit and share cooking recipes, as well as save their favorite ones to their profile.
 
 **Authors:**
 
@@ -11,13 +13,11 @@ This project was developed for the **"Information Visualization"** course unit o
 
 ## Tech Stack
 
-This project was built using a custom architecture without heavy frameworks like Express or Mongoose to demonstrate core understanding of HTTP and Database drivers.
-
 * **Desktop Environment:** Electron
-* **Frontend:** React.js (Custom implementation without Create-React-App)
-* **Backend:** Node.js (Native `http` module)
-* **Database:** MongoDB (Native `mongodb` driver)
-* **Styling:** CSS3 (Flexbox/Grid)
+* **Frontend:** React.js
+* **Backend:** Node.js
+* **Database:** MongoDB
+* **Styling:** CSS3
 
 ---
 
@@ -50,5 +50,5 @@ npm install
 ### 3. Running
 
 ```bash
-npm start
+npm run dev
 ```

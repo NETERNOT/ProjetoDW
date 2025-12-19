@@ -1,6 +1,7 @@
 const { useState, useEffect } = React;
 
 function App() {
+    const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState("login");

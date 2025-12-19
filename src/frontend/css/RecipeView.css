@@ -1,0 +1,133 @@
+.recipeDetailsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5%;
+}
+
+.recipeDetailsContainer a:first-child {
+    margin-left: 10%;
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    cursor: pointer;
+}
+
+.recipeContainer {
+    position: relative;
+    width: 80%;
+    border-radius: 1em;
+    overflow: hidden;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--white);
+}
+
+.recipeContainer img {
+    width: 100%;
+    max-height:  65vh;
+    height: auto;
+    object-fit: cover;
+}
+
+.tags {
+    position: absolute;
+    top: 1.5em;
+    right: 0;
+    margin: 0;
+    margin-right: 1.5em;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.tags span {
+    margin: 0;
+    background-color: var(--white);
+    color: var(--black);
+    padding: 0.3em 0.8em;
+    border-radius: 0.5em;
+    font-size: 0.85em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.details {
+    padding: 3em;
+    position: relative;
+}
+
+.details h1 {
+    color: var(--black);
+    font-size: 2em;
+    margin-top: -0.5em;
+}
+
+.details p {
+    color: var(--gray);
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+
+.info {
+    margin-top: 1.3em;
+    color: var(--gray);
+    font-size: 1.2em;
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+}
+
+.info div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.4em;
+}
+
+.info span:first-child {
+    font-size: 1.2em;
+}
+
+.save {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    position: absolute;
+    top: 2em;
+    right: 2em;
+    padding: 0.6em;
+    border-radius: 0.6em;
+    font-size: 1em;
+    color: var(--black);
+    background-color: var(--white);
+    border: 1px solid var(--gray);
+}
+
+.save:hover {
+    cursor: pointer;
+    background-color: var(--lightgray);
+}
+
+.recipeLists {
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    margin-top: 2em;
+}
+
+.ingredients, .instructions {
+    width: 50%;
+    color: var(--gray);
+    border-radius: 1.2em;
+    border: 1px solid var(--lightgray);
+    padding: 1.5em;
+    font-size: 1.2em;
+}
+
+::marker {
+    color: var(--orange);
+}

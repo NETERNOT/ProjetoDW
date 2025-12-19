@@ -26,5 +26,4 @@ function getDatabase() {
     return databaseInstance;
 }
 
-//EXPORTING THE FUNCTIONS TO BE USED IN SERVER.JS E CONTROLLER.JS
 module.exports = { connectToDatabase, getDatabase };

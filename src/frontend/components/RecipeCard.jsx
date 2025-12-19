@@ -1,0 +1,41 @@
+function RecipeCard({ recipe, onSelect }) {
+    return (
+        <div
+            className="recipeCard"
+            onClick={onSelect}
+        >
+            <div className="recipeCardTop">
+                <img
+                    src={recipe.picture}
+                    alt={recipe.title}
+                />
+                <div className="recipeCardTopOverlay">
+                    <span className="material-icons">bookmark</span>
+                    <div className="tags">
+                        {recipe.tags.map((tag, index) => (
+                            <span key={index}>{tag}</span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            <div className="recipeCardBottom">
+                <h3>{recipe.title}</h3>
+                <p>
+                    {recipe.description}
+                </p>
+
+                <div className="info">
+                    <div>
+                        <span className="material-icons">schedule</span>
+                        <span>{recipe.cookingTime} min</span>
+                    </div>
+                    <div>
+                        <span className="material-icons">group</span>
+                        <span>{recipe.servings}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}

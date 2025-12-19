@@ -1,0 +1,93 @@
+.filterTab {
+    width: 95%;
+    border-radius: 1.2em;
+    margin-bottom: 1.2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.searchBar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 1em;
+    margin-top: 0.8em;
+}
+
+.searchBar span:first-child {
+    position: absolute;
+    left: 0.8em;
+    color: var(--lightgray);
+    font-size: 1.3em;
+}
+
+.searchBar input {
+    border: 1px solid var(--lightgray);
+    font-size: 1em;
+    color: var(--lightgray);
+    width: 50%;
+    height: 2em;
+    border-radius: 0.75em;
+    padding-left: 2.5em;
+}
+
+.filterBar {
+    margin-top: 0.4em;
+    margin-bottom: 0.5em;
+}
+
+.filterBar,
+.filterLabel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 0.5em;
+}
+
+.filterBar {
+    gap: 1.5em;
+}
+
+.filterBar select {
+    height: 25px;
+    border-radius: 0.4em;
+}
+
+.servings input,
+.cookingTime input {
+    width: 40px;
+    height: 25px;
+    border: 1px solid var(--lightgray);
+    border-radius: 0.4em;
+}
+
+.servings,
+.cookingTime {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.clearButton {
+    background: none;
+    border: 0;
+    display: flex;
+    align-items: center;
+    color: var(--orange);
+    gap: 0.2em;
+}
+
+.clearButton span:first-child {
+    font-size: 1.6em;
+}
+
+.clearButton span:last-child {
+    font-size: 1.1em;
+}
+
+.clearButton:hover {
+    cursor: pointer;
+}
+
+.clearButton.hidden {
+    display: none;
+}

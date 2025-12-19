@@ -1,8 +1,7 @@
 const { app, BrowserWindow } = require('electron');
-require('./src/backend/server.js'); 
 
 function createMainWindow() {
-    
+
     const mainWindow = new BrowserWindow({
         width: 1200,
         height: 800,
@@ -24,7 +23,7 @@ function createMainWindow() {
     const loadContent = () => {
         mainWindow.loadURL(url).catch((err) => {
             console.log(`Server not ready. Retrying...`);
-            setTimeout(loadContent, 1000); 
+            setTimeout(loadContent, 1000);
         });
     };
 
