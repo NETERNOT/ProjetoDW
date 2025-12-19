@@ -48,18 +48,6 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
         }
     }
 
-    if (method === 'POST') {
-        incomingRequest.on('data', chunk => {
-            body += chunk.toString();
-        });
-        await new Promise(resolve => incomingRequest.on('end', resolve));
-        try {
-            body = JSON.parse(body);
-        } catch (e) {
-            body = {};
-        }
-    }
-
     if (url.startsWith('/api')) {
 
         if (url === '/api/recipes' && method === 'GET') {

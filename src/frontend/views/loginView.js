@@ -203,7 +203,7 @@ if (view === "signup") {
             type="submit"
             disabled={isSubmitDisabled}
           >
-            Login
+            {view === "login" ? "Login" : "Sign Up"}
           </button>
 
           {view === "login" && <a>Can't remember your password?</a>}
