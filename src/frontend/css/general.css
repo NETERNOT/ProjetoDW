@@ -77,6 +77,15 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+::-webkit-scrollbar:horizontal {
+  background: var(--lightgray);
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: var(--white);
+  cursor: pointer;
+}
+
 .hidden {
   display: none;
 }
