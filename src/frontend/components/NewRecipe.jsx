@@ -99,7 +99,7 @@ function NewRecipe({ onClose }) {
     };
 
     return (
-        <div className="newRecipeContainer hidden">
+        <div className="newRecipeContainer">
             <form className="newRecipe" onSubmit={handleSubmit}>
                 <button type="button" className="closeButton" onClick={onClose}><span className="material-icons">close</span></button>
                 <h1>Create New Recipe</h1>
@@ -149,7 +149,10 @@ function NewRecipe({ onClose }) {
                 <label htmlFor="picture">Image URL (optional)</label>
                 <input type="text" id="picture" name="picture" value={picture} onChange={(e) => setPicture(e.target.value)} />
 
-                <label>Ingredients *</label>
+                <div className="row">
+                    <label>Ingredients *</label>
+                    <button type="button" onClick={handleAddIngredient} className="add-btn">+ Add</button>
+                </div>
                 {ingredients.map((ingredient, index) => (
                     <div key={index} className="dynamic-input-row">
                         <input
@@ -166,9 +169,10 @@ function NewRecipe({ onClose }) {
                         )}
                     </div>
                 ))}
-                <button type="button" onClick={handleAddIngredient} className="add-btn">Add Ingredient</button>
-
-                <label>Instructions *</label>
+                <div className="row">
+                    <label>Instructions *</label>
+                    <button type="button" onClick={handleAddInstruction} className="add-btn">+ Add</button>
+                </div>
                 {instructions.map((instruction, index) => (
                     <div key={index} className="dynamic-input-row">
                         <input
@@ -185,7 +189,6 @@ function NewRecipe({ onClose }) {
                         )}
                     </div>
                 ))}
-                <button type="button" onClick={handleAddInstruction} className="add-btn">Add Instruction</button>
 
                 <button type="submit" style={{ marginTop: '20px' }}>Create</button>
             </form>

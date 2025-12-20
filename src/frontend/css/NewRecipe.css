@@ -48,30 +48,63 @@
     }
 
     &>label,
-    &>.row div label {
+    &>.row label {
         margin-top: 0.7em;
         font-size: 0.9em;
     }
 
     &>input[type="text"],
     &>input[type="number"],
-    &>.row div input {
+    &>.row div input,
+    &>.dynamic-input-row input {
         width: 100%;
         padding: 0.5em;
         border: 1px solid var(--lightgray);
         border-radius: 0.5em;
     }
 
+    &>.dynamic-input-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        &>input {
+            flex-shrink: 1;
+        }
+
+        &>.remove-btn {
+            background: transparent;
+            color: var(--black);
+            border: none;
+            cursor: pointer;
+        }
+    }
+
     &>.row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
+        margin-top: 0.5em;
 
         &>div {
             width: 45%;
             display: flex;
             flex-direction: column;
             gap: 0.5em;
+        }
+
+        &>.add-btn {
+            width: 20%;
+            height: 2.2em;
+            font-size: 0.8em;
+            padding: 0.5em;
+            background-color: var(--white);
+            color: var(--black);
+            border: 1px solid var(--black);
+            border-radius: 0.5em;
+            cursor: pointer;
         }
     }
 
