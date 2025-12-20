@@ -39,7 +39,7 @@ function App() {
    }; */
 
   if (view === "home") { console.log(userId) }
-  /*return (
+  return (
     <div className="container">
       {view === "home" &&
         <HomeView recipes={recipes} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
@@ -56,9 +56,7 @@ function App() {
         ></LoginView>
       )}
     </div>
-  );*/
-
-  return <NewRecipe onClose={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("react-root"));

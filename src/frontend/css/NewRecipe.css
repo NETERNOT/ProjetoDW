@@ -28,21 +28,64 @@
     padding: 1.5em;
     border-radius: 1.5em;
     position: relative;
+    gap: 0.5em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    &>p {
+        margin-bottom: 0.5em;
+    }
 
     &>.closeButton {
         position: absolute;
-        top: -0.5em;
-        right: -0.5em;
-        font-size: 1.4em;
+        top: 1.7em;
+        right: 1.1em;
+        font-size: 1em;
         cursor: pointer;
+        background: transparent;
+        color: var(--black);
+        border: none;
+    }
+
+    &>label,
+    &>.row div label {
+        margin-top: 0.7em;
+        font-size: 0.9em;
+    }
+
+    &>input[type="text"],
+    &>input[type="number"],
+    &>.row div input {
+        width: 100%;
+        padding: 0.5em;
+        border: 1px solid var(--lightgray);
+        border-radius: 0.5em;
+    }
+
+    &>.row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &>div {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+        }
+    }
+
+    &>button[type="submit"] {
+        width: 20%;
+        height: 3em;
+        font-size: 0.9em;
+        padding: 0.8em;
         background-color: var(--orange);
         color: var(--white);
         border: none;
-        border-radius: 50%;
-        width: 1.6em;
-        height: 1.6em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        border-radius: 0.5em;
+        cursor: pointer;
+        margin-top: 0.8em;
+        align-self: flex-end;
     }
 }
