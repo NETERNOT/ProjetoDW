@@ -49,18 +49,26 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
     }
 
     if (url.startsWith('/api')) {
-        if(url === '/api/getUserId' && method === 'POST'){
+        if (url === '/api/getUserId' && method === 'POST') {
             return userController.getUserId(incomingRequest, serverResponse, body);
         }
 
-        if(url === '/api/getUser' && method === 'POST'){
+        if (url === '/api/getUser' && method === 'POST') {
             return userController.getUser(incomingRequest, serverResponse, body)
         }
 
         if (url === '/api/recipes' && method === 'GET') {
             return recipeController.getAllRecipes(incomingRequest, serverResponse);
         }
-        
+
+        if (url === '/api/recipes' && method === 'POST') {
+            return recipeController.createRecipe(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/tags' && method === 'GET') {
+            return recipeController.getTags(incomingRequest, serverResponse);
+        }
+
         if (url === '/api/seed' && method === 'GET') {
             return recipeController.seedDatabase(incomingRequest, serverResponse);
         }
