@@ -12,7 +12,7 @@ function RecipeCard({ recipe, onSelect }) {
                 <div className="recipeCardTopOverlay">
                     <span className="material-icons">bookmark</span>
                     <div className="tags">
-                        {recipe.tags.map((tag, index) => (
+                        {(recipe.tags || []).map((tag, index) => (
                             <span key={index}>{tag}</span>
                         ))}
                     </div>

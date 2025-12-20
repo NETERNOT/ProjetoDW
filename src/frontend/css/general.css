@@ -83,7 +83,6 @@ body {
 
 ::-webkit-scrollbar-thumb:horizontal {
   background: var(--white);
-  cursor: pointer;
 }
 
 .hidden {
