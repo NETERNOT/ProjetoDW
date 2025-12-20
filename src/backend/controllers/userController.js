@@ -20,6 +20,25 @@ async function getAllUsers(req, res) {
     }
 }
 
+async function getUser(req, res, body){
+    try{
+        const db = getDatabase()
+        const { id } = body
+        const user = await db.collection(COLLECTION_NAME).findOne({ _id: new ObjectId(id) });
+        if(user){
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ user: { email: user.email, username: user.username, savedRecipes: user.savedRecipes } }));
+        }else{
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: "User not found" }));
+        }
+    }catch(error){
+        console.error(error);
+        res.writeHead(500);
+        res.end(JSON.stringify({error:" Internal Server Error"}))
+    }
+}
+
 async function checkEmailAvailability(req, res, body) {
     try {
         const db = getDatabase();
@@ -94,8 +113,10 @@ async function login(req, res, body) {
         const db = getDatabase();
         const { email, password } = body;
 
-        const user = await db.collection(COLLECTION_NAME).findOne({ email, password });
-
+        const user = await db
+            .collection(COLLECTION_NAME)
+            .findOne({ email, password });
+        
         if (!user) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Invalid credentials' }));
@@ -103,9 +124,14 @@ async function login(req, res, body) {
         }
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ message: 'Login successful', user: { email: user.email, username: user.username } }));
-
-
+        res.end(JSON.stringify({
+            message: 'Login successful',
+            user: {
+                id: user._id,
+                email: user.email,
+                username: user.username
+            }
+        }));
     } catch (error) {
         console.error(error);
         res.writeHead(500);
@@ -113,4 +139,5 @@ async function login(req, res, body) {
     }
 }
 
-module.exports = { getAllUsers, checkEmailAvailability, checkUsernameAvailability, signup, login };
+
+module.exports = { getUser, getAllUsers, checkEmailAvailability, checkUsernameAvailability, signup, login };

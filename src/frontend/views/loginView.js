@@ -1,20 +1,11 @@
 const { useState, useEffect } = React;
 
 function LoginView(props) {
-  const {
-    view,
-    setView,
-    email,
-    setEmail,
-    username,
-    setUsername,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
-    imageSrc,
-    navigate,
-  } = props;
+  const{ setUserId, view, setView, imageSrc } = props
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const [emailAvailable, setEmailAvailable] = useState(null);
   const [usernameAvailable, setUsernameAvailable] = useState(null);
@@ -119,11 +110,13 @@ function LoginView(props) {
       });
 
       const data = await response.json();
+      const userId = data.user.id;
 
       if (response.ok) {
         alert(data.message);
         if (view === "login") {
-          navigate("/home");
+          setUserId(userId)
+          setView("home");
         } else {
           setView("login");
           setEmail("");
