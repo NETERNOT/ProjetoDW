@@ -6,13 +6,9 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState("login");
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
   const [loginImage, setLoginImage] = useState(null);
 
+  const [userId, setUserId] = useState(null)
 
 
   // Fetch data when app starts
@@ -40,21 +36,16 @@ function App() {
     fetchRecipes(); // Refresh list after seeding
   }; */
 
+  if(view ==="home") {console.log(userId)}
   return (
     <div className="container">
       {view === "home" && <div>Welcome Home!</div>}
+
       {(view === "login" || view == "signup") && (
         <LoginView
           view={view}
           setView={setView}
-          email={email}
-          setEmail={setEmail}
-          username={username}
-          setUsername={setUsername}
-          password={password}
-          setPassword={setPassword}
-          confirmPassword={confirmPassword}
-          setConfirmPassword={setConfirmPassword}
+          setUserId={setUserId}
           imageSrc={loginImage}
         ></LoginView>
       )}
