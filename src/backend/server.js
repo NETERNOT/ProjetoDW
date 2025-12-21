@@ -7,6 +7,7 @@ require('dotenv').config();
 const { connectToDatabase } = require('./database');
 const recipeController = require('./controllers/recipeController');
 const userController = require('./controllers/userController');
+const commentsController = require('./controllers/commentsController');
 
 const SERVER_PORT = process.env.PORT || 8000;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
@@ -91,6 +92,10 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
 
         if (url === '/api/login' && method === 'POST') {
             return userController.login(incomingRequest, serverResponse, body);
+        }
+
+        if (url.startsWith('/api/comments') && method === 'GET') {
+            return commentsController.getAllComments(incomingRequest, serverResponse);
         }
 
         // API 404

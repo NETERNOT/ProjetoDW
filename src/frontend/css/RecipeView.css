@@ -139,3 +139,28 @@
 ::marker {
     color: var(--orange);
 }
+
+.commentsContainer {
+    margin-top: 0.8em;
+    padding-left: 3em;
+    padding-bottom: 3em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    & .comment {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+
+        & p:first-child {
+            font-weight: bold;
+            color: var(--orange);
+        }
+    }
+
+    & .noComments {
+        color: var(--gray);
+        font-style: italic;
+    }
+}

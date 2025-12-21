@@ -6,6 +6,7 @@ function App() {
   const [recipeId, setRecipeId] = useState(null);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState("login");
+  const [comments, setComments] = useState([]);
 
   const [loginImage, setLoginImage] = useState(null);
 
@@ -33,6 +34,29 @@ function App() {
     fetchRecipes();
   }, [recipes.length]);
 
+  useEffect(() => {
+    if (view === "recipe" && recipeId) {
+      const fetchComments = async () => {
+        try {
+          const response = await fetch("http://localhost:8000/api/comments");
+          const data = await response.json();
+
+          const filteredComments = data.filter(comment => {
+            const commentRecipeId = comment.recipe?.$oid || comment.recipe;
+            const targetId = recipeId?.$oid || recipeId;
+            return commentRecipeId === targetId;
+          });
+
+          setComments(filteredComments);
+        } catch (error) {
+          console.error("Error fetching comments:", error);
+        }
+      };
+
+      fetchComments();
+    }
+  }, [recipeId, view]);
+
   if (view === "home") { console.log(userId) }
   return (
     <div className="container">
@@ -40,7 +64,7 @@ function App() {
         <HomeView recipes={recipes} userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
 
       {view === "recipe" &&
-        <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} onBack={() => setView("home")} />}
+        <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} comments={comments} onBack={() => setView("home")} />}
 
       {(view === "login" || view == "signup") && (
         <LoginView

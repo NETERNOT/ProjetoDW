@@ -1,4 +1,4 @@
-function RecipeView({ recipe, onBack }) {
+function RecipeView({ recipe, comments, onBack }) {
 
     return (
         <div className="recipeDetailsContainer">
@@ -55,6 +55,14 @@ function RecipeView({ recipe, onBack }) {
                         </div>
                     </div>
                     <p>Created by: {recipe.createdBy.user}</p>
+                </div>
+                <div className="commentsContainer">
+                    <h2>Comments</h2>
+                    {comments ? <p className="noComments">
+                        There are no comments availble for this recipe. Be the first to share your opinion!</p>
+                        : comments.map((comment, index) => (
+                            <Comment key={index} comment={comment} />
+                        ))}
                 </div>
             </div>
         </div>
