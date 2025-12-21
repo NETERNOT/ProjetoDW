@@ -57,6 +57,7 @@ function RecipeView({ recipe, onBack }) {
                         </div>
                     </div>
                 </div>
+                <p>Created by: {recipe.createdBy.user}</p>
             </div>
         </div>
     );

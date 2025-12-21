@@ -1,4 +1,4 @@
-function NewRecipe({ onClose }) {
+function NewRecipe({ onClose, userId }) {
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [selectedTags, setSelectedTags] = React.useState([]);
@@ -72,7 +72,8 @@ function NewRecipe({ onClose }) {
             servings: Number(servings),
             picture,
             ingredients: ingredients.filter(i => i.trim() !== ''),
-            instructions: instructions.filter(i => i.trim() !== '')
+            instructions: instructions.filter(i => i.trim() !== ''),
+            userId: userId
         };
 
         try {
@@ -99,7 +100,7 @@ function NewRecipe({ onClose }) {
     };
 
     return (
-        <div className="newRecipeContainer">
+        <div className="newRecipeContainer hidden">
             <form className="newRecipe" onSubmit={handleSubmit}>
                 <button type="button" className="closeButton" onClick={onClose}><span className="material-icons">close</span></button>
                 <h1>Create New Recipe</h1>

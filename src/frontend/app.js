@@ -33,16 +33,11 @@ function App() {
     fetchRecipes();
   }, [recipes.length]);
 
-  /*  const handleSeedData = async () => {
-     await fetch("http://localhost:8000/api/seed");
-     fetchRecipes(); // Refresh list after seeding
-   }; */
-
   if (view === "home") { console.log(userId) }
   return (
     <div className="container">
       {view === "home" &&
-        <HomeView recipes={recipes} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
+        <HomeView recipes={recipes} userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
 
       {view === "recipe" &&
         <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} onBack={() => setView("home")} />}
