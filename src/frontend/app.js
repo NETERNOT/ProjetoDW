@@ -34,6 +34,8 @@ function App() {
     fetchRecipes();
   }, [recipes.length]);
 
+  const [refreshComments, setRefreshComments] = useState(0);
+
   useEffect(() => {
     if (view === "recipe" && recipeId) {
       const fetchComments = async () => {
@@ -55,7 +57,7 @@ function App() {
 
       fetchComments();
     }
-  }, [recipeId, view]);
+  }, [recipeId, view, refreshComments]);
 
   if (view === "home") { console.log(userId) }
   return (
@@ -64,7 +66,13 @@ function App() {
         <HomeView recipes={recipes} userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
 
       {view === "recipe" &&
-        <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} comments={comments} onBack={() => setView("home")} />}
+        <RecipeView
+          recipe={recipes.find((recipe) => recipe._id === recipeId)}
+          comments={comments}
+          userId={userId}
+          onBack={() => setView("home")}
+          onCommentPosted={() => setRefreshComments(prev => prev + 1)}
+        />}
 
       {(view === "login" || view == "signup") && (
         <LoginView

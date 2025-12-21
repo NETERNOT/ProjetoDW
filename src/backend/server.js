@@ -98,6 +98,10 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
             return commentsController.getAllComments(incomingRequest, serverResponse);
         }
 
+        if (url === '/api/comments' && method === 'POST') {
+            return commentsController.createComment(incomingRequest, serverResponse, body);
+        }
+
         // API 404
 
         serverResponse.writeHead(404, { 'Content-Type': 'application/json' });
