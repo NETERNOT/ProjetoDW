@@ -6,7 +6,33 @@ const COLLECTION_NAME = 'recipes';
 async function getAllRecipes(req, res) {
     try {
         const db = getDatabase();
-        const recipes = await db.collection(COLLECTION_NAME).find({}).toArray();
+
+        const recipes = await db.collection(COLLECTION_NAME).aggregate([
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'createdBy.user',
+                    foreignField: '_id',
+                    as: 'creator'
+                }
+            },
+            {
+                $unwind: {
+                    path: '$creator',
+                    preserveNullAndEmptyArrays: true
+                }
+            },
+            {
+                $addFields: {
+                    'createdBy.user': { $ifNull: ['$creator.username', 'Unknown'] }
+                }
+            },
+            {
+                $project: {
+                    creator: 0
+                }
+            }
+        ]).toArray();
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(recipes));
@@ -25,7 +51,23 @@ async function createRecipe(req, res, body) {
             return res.end(JSON.stringify({ error: 'Body is required' }));
         }
 
-        const recipe = await db.collection(COLLECTION_NAME).insertOne(body);
+        const { title, description, tags, cookingTime, servings, picture, ingredients, instructions, userId } = body;
+
+        const newRecipe = {
+            title,
+            description,
+            tags,
+            cookingTime,
+            servings,
+            picture,
+            ingredients,
+            instructions,
+            createdBy: {
+                user: new ObjectId(userId)
+            }
+        };
+
+        const recipe = await db.collection(COLLECTION_NAME).insertOne(newRecipe);
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'Recipe posted successfully!', recipeTitle: body.title, id: recipe.insertedId }));
     } catch (error) {

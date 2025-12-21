@@ -19,9 +19,7 @@ function RecipeView({ recipe, onBack }) {
                 </div>
                 <div className="details">
                     <h1>{recipe.title}</h1>
-                    <p>
-                        {recipe.description}
-                    </p>
+                    <p>{recipe.description}</p>
 
                     <div className="info">
                         <div>
@@ -56,6 +54,7 @@ function RecipeView({ recipe, onBack }) {
                             </ol>
                         </div>
                     </div>
+                    <p>Created by: {recipe.createdBy.user}</p>
                 </div>
             </div>
         </div>

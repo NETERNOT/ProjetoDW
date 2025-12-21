@@ -20,22 +20,22 @@ async function getAllUsers(req, res) {
     }
 }
 
-async function getUser(req, res, body){
-    try{
+async function getUser(req, res, body) {
+    try {
         const db = getDatabase()
         const { id } = body
         const user = await db.collection(COLLECTION_NAME).findOne({ _id: new ObjectId(id) });
-        if(user){
+        if (user) {
             res.writeHead(200, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ user: { email: user.email, username: user.username, savedRecipes: user.savedRecipes } }));
-        }else{
+        } else {
             res.writeHead(404, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: "User not found" }));
         }
-    }catch(error){
+    } catch (error) {
         console.error(error);
         res.writeHead(500);
-        res.end(JSON.stringify({error:" Internal Server Error"}))
+        res.end(JSON.stringify({ error: " Internal Server Error" }))
     }
 }
 
@@ -69,7 +69,8 @@ async function checkUsernameAvailability(req, res, body) {
             res.end(JSON.stringify({ available: true }));
             return;
         }
-        const user = await db.collection(COLLECTION_NAME).findOne({ username });
+        // Check against username in DB
+        const user = await db.collection(COLLECTION_NAME).findOne({ username: username });
         const available = !user;
 
         res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -88,7 +89,7 @@ async function signup(req, res, body) {
 
         // Check availability
         const emailUser = await db.collection(COLLECTION_NAME).findOne({ email });
-        const usernameUser = await db.collection(COLLECTION_NAME).findOne({ username });
+        const usernameUser = await db.collection(COLLECTION_NAME).findOne({ username: username });
 
         if (emailUser || usernameUser) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -96,8 +97,8 @@ async function signup(req, res, body) {
             return;
         }
 
-        // Insert user
-        const result = await db.collection(COLLECTION_NAME).insertOne({ username, email, password, savedRecipes: [] });
+        // Insert user with username field
+        const result = await db.collection(COLLECTION_NAME).insertOne({ username: username, email, password, savedRecipes: [] });
 
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: 'User created successfully', userId: result.insertedId }));
@@ -116,7 +117,7 @@ async function login(req, res, body) {
         const user = await db
             .collection(COLLECTION_NAME)
             .findOne({ email, password });
-        
+
         if (!user) {
             res.writeHead(401, { 'Content-Type': 'application/json' });
             res.end(JSON.stringify({ error: 'Invalid credentials' }));
