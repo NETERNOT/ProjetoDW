@@ -1,4 +1,5 @@
 function HomeView({ recipes, userId, onSelect, onSelectNew, onCloseNew }) {
+
     const tags = [...new Set(recipes.flatMap(recipe => recipe.tags))];
 
     const [filters, setFilters] = useState({
@@ -51,7 +52,8 @@ function HomeView({ recipes, userId, onSelect, onSelectNew, onCloseNew }) {
                     <RecipeCard
                         key={recipe._id}
                         recipe={recipe}
-                        onSelect={() => onSelect(recipe._id)} />
+                        onSelect={() => onSelect(recipe._id)}
+                        userId={userId} />
                 ))}
                 {filteredRecipes.length === 0 && (
                     <p>No recipes found.</p>

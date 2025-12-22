@@ -1,7 +1,6 @@
 const { useState, useEffect } = React;
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [recipes, setRecipes] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -82,6 +81,10 @@ function App() {
           imageSrc={loginImage}
         ></LoginView>
       )}
+
+      {view === "profile" &&
+        <ProfileView userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }}></ProfileView>
+      }
     </div>
   );
 }
