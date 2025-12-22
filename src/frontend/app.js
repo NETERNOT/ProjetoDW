@@ -9,8 +9,11 @@ function App() {
   const [loginImage, setLoginImage] = useState(null);
 
   const [userId, setUserId] = useState(null);
+  const [comments, setComments] = useState([]); // Add comments state
 
   // Fetch data when app starts
+  const [refreshRecipes, setRefreshRecipes] = useState(0);
+
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -19,7 +22,7 @@ function App() {
         setRecipes(data);
         setLoading(false);
 
-        if (data.length > 0) {
+        if (data.length > 0 && !loginImage) {
           setLoginImage(data[Math.floor(Math.random() * data.length)]?.picture);
         }
       } catch (error) {
@@ -29,7 +32,7 @@ function App() {
     };
 
     fetchRecipes();
-  }, [recipes.length]);
+  }, [refreshRecipes]);
 
   const [refreshComments, setRefreshComments] = useState(0);
 
@@ -90,6 +93,7 @@ function App() {
               .querySelector(".newRecipeContainer")
               .classList.add("hidden")
           }
+          onRecipeCreated={() => setRefreshRecipes((prev) => prev + 1)}
         />
       )}
 
@@ -98,6 +102,8 @@ function App() {
           recipe={recipes.find((recipe) => recipe._id === recipeId)}
           onBack={() => setView("home")}
           userId={userId}
+          comments={comments}
+          onCommentPosted={() => setRefreshComments(prev => prev + 1)}
         />
       )}
 

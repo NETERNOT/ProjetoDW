@@ -1,4 +1,4 @@
-function HomeView({ recipes, userId, onSelect, onSelectNew, onCloseNew }) {
+function HomeView({ recipes, userId, onSelect, onSelectNew, onCloseNew, onRecipeCreated }) {
 
     const tags = [...new Set(recipes.flatMap(recipe => recipe.tags))];
 
@@ -60,7 +60,7 @@ function HomeView({ recipes, userId, onSelect, onSelectNew, onCloseNew }) {
                 )}
             </div>
             <button className="newRecipeButton" onClick={onSelectNew}>+ New Recipe</button>
-            <NewRecipe onClose={onCloseNew} userId={userId} />
+            <NewRecipe onClose={onCloseNew} userId={userId} onRecipeCreated={onRecipeCreated} />
         </div>
     );
 }

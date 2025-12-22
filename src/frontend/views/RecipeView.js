@@ -169,11 +169,15 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
 
         <div className="commentsContainer">
           <h2>Comments</h2>
-          {comments && comments.length === 0 ? <p className="noComments">
-            There are no comments availble for this recipe. Be the first to share your opinion!</p>
-            : comments.map((comment, index) => (
+          {comments && comments.length > 0 ? (
+            comments.map((comment, index) => (
               <Comment key={index} comment={comment} />
-            ))}
+            ))
+          ) : (
+            <p className="noComments">
+              There are no comments availble for this recipe. Be the first to share your opinion!
+            </p>
+          )}
           <form onSubmit={handleSubmit}>
             <input
               type="text"

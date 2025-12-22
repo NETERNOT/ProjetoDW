@@ -1,4 +1,4 @@
-function NewRecipe({ onClose, userId }) {
+function NewRecipe({ onClose, userId, onRecipeCreated }) {
     const [title, setTitle] = React.useState('');
     const [description, setDescription] = React.useState('');
     const [selectedTags, setSelectedTags] = React.useState([]);
@@ -87,9 +87,8 @@ function NewRecipe({ onClose, userId }) {
 
             if (response.ok) {
                 alert('Recipe created successfully!');
+                if (onRecipeCreated) onRecipeCreated();
                 onClose();
-                // Optionally refresh recipes list here if possible, or force reload
-                window.location.reload();
             } else {
                 alert('Failed to create recipe');
             }
