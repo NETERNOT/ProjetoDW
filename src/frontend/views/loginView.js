@@ -115,16 +115,8 @@ function LoginView(props) {
 
       if (response.ok) {
         alert(data.message);
-        if (view === "login") {
-          setUserId(userId)
-          setView("home");
-        } else {
-          setView("login");
-          setEmail("");
-          setPassword("");
-          setUsername("");
-          setConfirmPassword("");
-        }
+        setUserId(userId)
+        setView("home");
       } else {
         alert(data.error);
       }
