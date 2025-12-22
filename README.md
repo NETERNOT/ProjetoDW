@@ -13,10 +13,10 @@ MyCookBook is a hybrid web application and social network that allows users to s
 
 ## Screenshots
 
-![Home]()
-![Recipe]()
-![Profile]()
-![Login]()
+![Home](https://raw.githubusercontent.com/NETERNOT/ProjetoDW/main/screenshots/home.png)
+![Recipe](https://raw.githubusercontent.com/NETERNOT/ProjetoDW/main/screenshots/recipe.png)
+![Profile](https://raw.githubusercontent.com/NETERNOT/ProjetoDW/main/screenshots/profile.png)
+![Login](https://raw.githubusercontent.com/NETERNOT/ProjetoDW/main/screenshots/login.png)
 
 ---
 
