@@ -1,9 +1,10 @@
 const { useState, useEffect } = React;
 
-function ProfileView({ userId }) {
+function ProfileView({ userId , onSelect}) {
   const [user, setUser] = useState(null);
   userId = "6942a56f007469514fedf385";
-  const [savedRecipes, setSavedRecipes] = useState([]); // New state for saved recipes
+  const [savedRecipes, setSavedRecipes] = useState([]);
+  const [createdRecipes, setCreatedRecipes] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -58,6 +59,35 @@ function ProfileView({ userId }) {
         console.error("Error fetching saved recipes:", err);
       }
     };
+
+    const fetchCreatedRecipes = async () => {
+      if (!user) {
+        setCreatedRecipes([]);
+        return;
+      }
+      try {
+        const response = await fetch(`http://localhost:8000/api/getRecipesByCreator`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ creatorId: userId }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          setCreatedRecipes(data);
+        } else {
+          console.error(
+            "Fetch failed with status:",
+            response.status,
+            "data:",
+            data
+          );
+        }
+      } catch (err) {
+        console.error("Error fetching created recipes:", err);
+      }
+    };
+
+    fetchCreatedRecipes();
     fetchSavedRecipes();
   }, [user]);
 
@@ -83,7 +113,7 @@ function ProfileView({ userId }) {
             </div>
 
             <div>
-              <div>{"3"}</div>
+              <div>{createdRecipes.length}</div>
               <div>Created Recipes</div>
             </div>
           </div>

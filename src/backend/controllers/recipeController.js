@@ -122,17 +122,12 @@ async function getRecipesById(req, res, body) {
       return;
     }
     
-    console.log('idList received:', idList);  // Add this debug log
-    // Convert string IDs to ObjectId for MongoDB query
     const objectIds = idList.map(id => new ObjectId(id));
-    console.log('Converted to ObjectIds:', objectIds);  // Add this
     
-    // Query for recipes where _id is in the idList
     const recipes = await db.collection(COLLECTION_NAME).find({ _id: { $in: objectIds } }).toArray();
-    console.log('Recipes found:', recipes.length, 'items');  // Add this
     
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(recipes));  // Return the array of recipes directly
+    res.end(JSON.stringify(recipes));
   } catch (error) {
     console.error(error);
     res.writeHead(500);
@@ -140,4 +135,26 @@ async function getRecipesById(req, res, body) {
   }
 }
 
-module.exports = { getAllRecipes, getRecipesById, createRecipe, getTags };
+async function getRecipesByCreator(req, res, body){
+    try{
+        const db = getDatabase()
+        const { creatorId } = body
+
+        if (!creatorId) {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "creatorId is required" }));
+            return;
+        }
+
+        const recipes = await db.collection(COLLECTION_NAME).find({ "createdBy.user": new ObjectId(creatorId) }).toArray()
+
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify(recipes))
+    }   catch(error){
+        console.error(error)
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({error: "Internal Server Error."}))
+    }
+}
+
+module.exports = { getAllRecipes, getRecipesById, getRecipesByCreator, createRecipe, getTags };
