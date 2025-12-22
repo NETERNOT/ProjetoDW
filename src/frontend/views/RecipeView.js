@@ -1,5 +1,10 @@
-function RecipeView({ recipe, onBack, userId }) {
+function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
+  const { useState, useEffect } = React;
+  const [commentText, setCommentText] = useState("");
   const [user, setUser] = useState(null);
+
+  // Clean up: Ensure we don't have bad props causing crash
+  if (!recipe) return null;
 
   useEffect(() => {
     if (!userId) return;
@@ -14,11 +19,10 @@ function RecipeView({ recipe, onBack, userId }) {
         if (response.ok) {
           setUser(data.user);
         } else {
-          alert(data.error);
+          console.error(data.error);
         }
       } catch (err) {
         console.error("Error fetching user:", err);
-        alert("An error occurred");
       }
     };
     fetchUser();
@@ -28,9 +32,10 @@ function RecipeView({ recipe, onBack, userId }) {
 
   const toggleSave = async (e) => {
     e.stopPropagation();
-    if (!user) return;
+    if (!user) return; // Can't save if not logged in
 
     const wasSaved = saved;
+    // Optimistic update
     const newSavedRecipes = wasSaved
       ? user.savedRecipes.filter((id) => id !== recipe._id)
       : [...user.savedRecipes, recipe._id];
@@ -47,6 +52,7 @@ function RecipeView({ recipe, onBack, userId }) {
         }
       );
       if (!response.ok) {
+        // Revert on failure
         setUser({ ...user, savedRecipes: user.savedRecipes });
         console.error("Failed to toggle save");
       }
@@ -55,49 +61,41 @@ function RecipeView({ recipe, onBack, userId }) {
       console.error("Error toggling save:", err);
     }
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!commentText.trim()) return;
+
+    try {
+      const response = await fetch("http://localhost:8000/api/comments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userId,
+          recipeId: recipe._id,
+          text: commentText,
+        }),
+      });
+
+      if (response.ok) {
+        setCommentText("");
+        if (onCommentPosted) onCommentPosted();
+      } else {
+        console.error("Failed to post comment");
+      }
+    } catch (error) {
+      console.error("Error posting comment:", error);
+    }
+  };
+
   return (
     <div className="recipeDetailsContainer">
       <a onClick={onBack}>
         <span className="material-icons">arrow_back</span>
         <span>Back</span>
       </a>
-function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
-    const [commentText, setCommentText] = useState("");
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!commentText.trim()) return;
-
-        try {
-            const response = await fetch("http://localhost:8000/api/comments", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId: userId,
-                    recipeId: recipe._id,
-                    text: commentText,
-                }),
-            });
-
-            if (response.ok) {
-                setCommentText("");
-                if (onCommentPosted) onCommentPosted();
-            } else {
-                console.error("Failed to post comment");
-            }
-        } catch (error) {
-            console.error("Error posting comment:", error);
-        }
-    };
-
-    return (
-        <div className="recipeDetailsContainer">
-            <a onClick={onBack}>
-                <span className="material-icons">arrow_back</span>
-                <span>Back</span>
-            </a>
 
       <div className="recipeContainer">
         <img src={recipe.picture} alt={recipe.title} />
@@ -124,8 +122,9 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
           <div className="save">
             <span className="material-icons" onClick={toggleSave}>
               {saved ? "bookmark" : "bookmark_border"}
-            </span> {saved? "Saved" : "Save"}
+            </span> {saved ? "Saved" : "Save"}
           </div>
+
           <div className="recipeLists">
             <div className="ingredients">
               Ingredients
@@ -147,38 +146,26 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
           </div>
           <p>Created by: {recipe.createdBy.user}</p>
         </div>
+
+        <div className="commentsContainer">
+          <h2>Comments</h2>
+          {comments && comments.length === 0 ? <p className="noComments">
+            There are no comments availble for this recipe. Be the first to share your opinion!</p>
+            : comments.map((comment, index) => (
+              <Comment key={index} comment={comment} />
+            ))}
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Write a comment..."
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+            />
+            <button type="submit"><span className="material-icons">send</span></button>
+          </form>
+        </div>
+
       </div>
     </div>
   );
-                        <div className="instructions">
-                            Instructions
-                            <ol>
-                                {recipe.instructions.map((instruction, index) => (
-                                    <li key={index}>{instruction}</li>
-                                ))}
-                            </ol>
-                        </div>
-                    </div>
-                    <p>Created by: {recipe.createdBy.user}</p>
-                </div >
-    <div className="commentsContainer">
-      <h2>Comments</h2>
-      {comments && comments.length === 0 ? <p className="noComments">
-        There are no comments availble for this recipe. Be the first to share your opinion!</p>
-        : comments.map((comment, index) => (
-          <Comment key={index} comment={comment} />
-        ))}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Write a comment..."
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-        />
-        <button type="submit"><span className="material-icons">send</span></button>
-      </form>
-    </div>
-            </div >
-        </div >
-    );
 }
