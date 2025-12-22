@@ -1,12 +1,12 @@
-require('dotenv').config();
+const MONGO_URI = 'mongodb://127.0.0.1:27017'
+const DATABASE_NAME = 'mycookbook'
 
 const { MongoClient } = require('mongodb');
-const DATABASE_NAME = 'mycookbook';
 let databaseInstance = null;
 
 async function connectToDatabase() {
     try {
-        const client = new MongoClient(process.env.MONGO_URI);
+        const client = new MongoClient(MONGO_URI);
         await client.connect();
         console.log('Successfully connected to MongoDB');
         databaseInstance = client.db(DATABASE_NAME);
