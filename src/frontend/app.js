@@ -5,7 +5,7 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("login");
+  const [view, setView] = useState("profile");
 
   const [loginImage, setLoginImage] = useState(null);
 
@@ -50,6 +50,10 @@ function App() {
           imageSrc={loginImage}
         ></LoginView>
       )}
+
+      {view==="profile" && 
+        <ProfileView userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }}></ProfileView>
+      }
     </div>
   );
 }

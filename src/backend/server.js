@@ -65,6 +65,10 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
             return recipeController.createRecipe(incomingRequest, serverResponse, body);
         }
 
+        if(url === '/api/recipesById' && method === 'POST') {
+            return recipeController.getRecipesById(incomingRequest, serverResponse, body);
+        }
+
         if (url === '/api/tags' && method === 'GET') {
             return recipeController.getTags(incomingRequest, serverResponse);
         }
