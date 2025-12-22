@@ -111,3 +111,16 @@ npm run app:browser
 # To open both versions simultaneously
 npm run dev
 ```
+
+---
+
+## Work Division
+
+| Estêvão Abreu | Nuno Pinto |
+| ------------- | ------------- |
+| Recipe database handling | Users database handling |
+| Comments feature implementation | "Save" feature implementation |
+| "Create new recipe" backend | "Login/signup" backend |
+| Home screen frontend | Login screen frontend |
+| Recipe details frontend | Profile screen frontend |
+| Search | Navbar |
