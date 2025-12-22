@@ -1,14 +1,14 @@
 const http = require('http');
 const fileSystem = require('fs');
 const path = require('path');
-
-require('dotenv').config();
+const PORT = 8000
 
 const { connectToDatabase } = require('./database');
 const recipeController = require('./controllers/recipeController');
 const userController = require('./controllers/userController');
+const commentsController = require('./controllers/commentsController');
 
-const SERVER_PORT = process.env.PORT || 8000;
+const SERVER_PORT = PORT || 8000;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
 
 const mimeTypes = {
@@ -65,14 +65,6 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
             return recipeController.createRecipe(incomingRequest, serverResponse, body);
         }
 
-        if(url === '/api/recipesById' && method === 'POST') {
-            return recipeController.getRecipesById(incomingRequest, serverResponse, body);
-        }
-
-        if(url === '/api/getRecipesByCreator' && method === 'POST') {
-            return recipeController.getRecipesByCreator(incomingRequest, serverResponse, body)
-        }
-
         if (url === '/api/tags' && method === 'GET') {
             return recipeController.getTags(incomingRequest, serverResponse);
         }
@@ -99,6 +91,14 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
 
         if (url === '/api/login' && method === 'POST') {
             return userController.login(incomingRequest, serverResponse, body);
+        }
+
+        if (url.startsWith('/api/comments') && method === 'GET') {
+            return commentsController.getAllComments(incomingRequest, serverResponse);
+        }
+
+        if (url === '/api/comments' && method === 'POST') {
+            return commentsController.createComment(incomingRequest, serverResponse, body);
         }
 
         if (url === '/api/toggleSavedRecipe' && method === 'POST') {
