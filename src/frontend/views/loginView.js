@@ -110,6 +110,7 @@ function LoginView(props) {
       });
 
       const data = await response.json();
+
       const userId = data.user.id;
 
       if (response.ok) {

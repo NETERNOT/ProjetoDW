@@ -101,6 +101,10 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
             return userController.login(incomingRequest, serverResponse, body);
         }
 
+        if (url === '/api/toggleSavedRecipe' && method === 'POST') {
+            return userController.toggleSavedRecipe(incomingRequest, serverResponse, body);
+        }
+
         // API 404
 
         serverResponse.writeHead(404, { 'Content-Type': 'application/json' });

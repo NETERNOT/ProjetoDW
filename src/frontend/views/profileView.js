@@ -2,7 +2,6 @@ const { useState, useEffect } = React;
 
 function ProfileView({ userId , onSelect}) {
   const [user, setUser] = useState(null);
-  userId = "6942a56f007469514fedf385";
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [createdRecipes, setCreatedRecipes] = useState([]);
 
@@ -42,10 +41,8 @@ function ProfileView({ userId , onSelect}) {
           body: JSON.stringify({ idList: user.savedRecipes }),
         });
         const data = await response.json();
-        console.log("Response status:", response.status); // Add this
-        console.log("Response data:", data); // Add this
+
         if (response.ok) {
-          console.log("Setting savedRecipes to:", data); // Add this
           setSavedRecipes(data);
         } else {
           console.error(
@@ -89,6 +86,7 @@ function ProfileView({ userId , onSelect}) {
 
     fetchCreatedRecipes();
     fetchSavedRecipes();
+
   }, [user]);
 
   const showNoSavedRecipes = !user || user.savedRecipes.length === 0;
@@ -108,7 +106,7 @@ function ProfileView({ userId , onSelect}) {
         {user && (
           <div className="stats">
             <div>
-              <div>{user.savedRecipes.length}</div>
+              <div>{savedRecipes.length}</div>
               <div>Saved Recipes</div>
             </div>
 
@@ -135,7 +133,8 @@ function ProfileView({ userId , onSelect}) {
                <RecipeCard
                         key={recipe._id}
                         recipe={recipe}
-                        onSelect={() => onSelect(recipe._id)} />
+                        onSelect={() => onSelect(recipe._id)}
+                        userId={userId} />
             ))}
           </>
         )}

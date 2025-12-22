@@ -1,11 +1,10 @@
 const { useState, useEffect } = React;
 
 function App() {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const [recipes, setRecipes] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("profile");
+  const [view, setView] = useState("login");
 
   const [loginImage, setLoginImage] = useState(null);
 
@@ -33,7 +32,6 @@ function App() {
     fetchRecipes();
   }, [recipes.length]);
 
-  if (view === "home") { console.log(userId) }
   return (
     <div className="container">
       {view === "home" &&

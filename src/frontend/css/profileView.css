@@ -85,11 +85,8 @@
     &>.savedRecipesContainer {
         width: 100%;
         padding: 2rem;
-        display: flex;
-        flex-direction: row;
-        gap: 3rem;
 
-        flex-wrap: wrap;
+        columns: 3;
 
         background-color: var(--white);
         border: solid 1px var(--gray);
@@ -103,15 +100,10 @@
             align-items: center;
             color: var(--gray);
 
-            &>span{
+            &>span {
                 font-size: 5rem;
             }
         }
 
-        &>.mockRecipe{
-            width: 5rem;
-            aspect-ratio: 1;
-            background-color: black;
-        }
     }
 }
