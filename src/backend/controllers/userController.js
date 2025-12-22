@@ -3,12 +3,9 @@ const { ObjectId } = require("mongodb");
 
 const COLLECTION_NAME = "users";
 
-// --- CONTROLLER FUNCTIONS ---
-
 async function getAllUsers(req, res) {
   try {
     const db = getDatabase();
-    // Fetch all documents from the 'users' collection
     const users = await db.collection(COLLECTION_NAME).find({}).toArray();
 
     res.writeHead(200, { "Content-Type": "application/json" });
@@ -24,7 +21,7 @@ async function getUser(req, res, body) {
   try {
     const db = getDatabase();
     const { id } = body;
-    console.log("Requested user id:", id); // Add this
+    console.log("Requested user id:", id);
     const user = await db
       .collection(COLLECTION_NAME)
       .findOne({ _id: new ObjectId(id) });
@@ -80,7 +77,6 @@ async function checkUsernameAvailability(req, res, body) {
       res.end(JSON.stringify({ available: true }));
       return;
     }
-    // Check against username in DB
     const user = await db
       .collection(COLLECTION_NAME)
       .findOne({ username: username });
@@ -100,7 +96,6 @@ async function signup(req, res, body) {
     const db = getDatabase();
     const { email, username, password } = body;
 
-    // Check availability
     const emailUser = await db.collection(COLLECTION_NAME).findOne({ email });
     const usernameUser = await db
       .collection(COLLECTION_NAME)
@@ -112,19 +107,18 @@ async function signup(req, res, body) {
       return;
     }
 
-    // Insert user with username field
     const user = await db
       .collection(COLLECTION_NAME)
       .insertOne({ username: username, email, password, savedRecipes: [] });
 
-    console.log('User created with id:', user.insertedId.toString());  // Fix this
+    console.log('User created with id:', user.insertedId.toString());
 
     res.writeHead(201, { "Content-Type": "application/json" });
     res.end(
       JSON.stringify({
         message: "User created successfully",
         user: {
-          id: user.insertedId,  // Fix: was result.insertedId
+          id: user.insertedId,
         },
       })
     );
@@ -197,7 +191,6 @@ async function toggleSavedRecipe(req, res, body) {
       user.savedRecipes.splice(index, 1);
     }
 
-    // Update the user in DB
     await db
       .collection(COLLECTION_NAME)
       .updateOne(

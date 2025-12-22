@@ -105,7 +105,13 @@ const server = http.createServer(async (incomingRequest, serverResponse) => {
             return userController.toggleSavedRecipe(incomingRequest, serverResponse, body);
         }
 
-        // API 404
+        if (url === '/api/recipesById' && method === 'POST') {
+            return recipeController.getRecipesById(incomingRequest, serverResponse, body);
+        }
+
+        if (url === '/api/getRecipesByCreator' && method === 'POST') {
+            return recipeController.getRecipesByCreator(incomingRequest, serverResponse, body);
+        }
 
         serverResponse.writeHead(404, { 'Content-Type': 'application/json' });
         serverResponse.end(JSON.stringify({ message: 'API Route not found' }));

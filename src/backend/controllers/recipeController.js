@@ -100,7 +100,6 @@ async function getTags(req, res) {
   try {
     const db = getDatabase();
     const tags = await db.collection(COLLECTION_NAME).distinct("tags");
-    // Filter out any null/undefined tags just in case
     const cleanTags = tags.filter((tag) => tag);
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(cleanTags));
@@ -115,17 +114,17 @@ async function getRecipesById(req, res, body) {
   try {
     const db = getDatabase();
     const { idList } = body;
-    
+
     if (!idList || !Array.isArray(idList) || idList.length === 0) {
       res.writeHead(400, { "Content-Type": "application/json" });
       res.end(JSON.stringify({ error: "idList must be a non-empty array of recipe IDs" }));
       return;
     }
-    
+
     const objectIds = idList.map(id => new ObjectId(id));
-    
+
     const recipes = await db.collection(COLLECTION_NAME).find({ _id: { $in: objectIds } }).toArray();
-    
+
     res.writeHead(200, { "Content-Type": "application/json" });
     res.end(JSON.stringify(recipes));
   } catch (error) {
@@ -135,26 +134,26 @@ async function getRecipesById(req, res, body) {
   }
 }
 
-async function getRecipesByCreator(req, res, body){
-    try{
-        const db = getDatabase()
-        const { creatorId } = body
+async function getRecipesByCreator(req, res, body) {
+  try {
+    const db = getDatabase()
+    const { creatorId } = body
 
-        if (!creatorId) {
-            res.writeHead(400, { "Content-Type": "application/json" });
-            res.end(JSON.stringify({ error: "creatorId is required" }));
-            return;
-        }
-
-        const recipes = await db.collection(COLLECTION_NAME).find({ "createdBy.user": new ObjectId(creatorId) }).toArray()
-
-        res.writeHead(200, { "Content-Type": "application/json" });
-        res.end(JSON.stringify(recipes))
-    }   catch(error){
-        console.error(error)
-        res.writeHead(500, { "Content-Type": "application/json" });
-        res.end(JSON.stringify({error: "Internal Server Error."}))
+    if (!creatorId) {
+      res.writeHead(400, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ error: "creatorId is required" }));
+      return;
     }
+
+    const recipes = await db.collection(COLLECTION_NAME).find({ "createdBy.user": new ObjectId(creatorId) }).toArray()
+
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(recipes))
+  } catch (error) {
+    console.error(error)
+    res.writeHead(500, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ error: "Internal Server Error." }))
+  }
 }
 
 module.exports = { getAllRecipes, getRecipesById, getRecipesByCreator, createRecipe, getTags };

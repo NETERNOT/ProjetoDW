@@ -1,7 +1,7 @@
 const { useState, useEffect } = React;
 
 function LoginView(props) {
-  const{ setUserId, view, setView, imageSrc } = props
+  const { setUserId, view, setView, imageSrc } = props
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,7 +12,6 @@ function LoginView(props) {
   const [checkingEmail, setCheckingEmail] = useState(false);
   const [checkingUsername, setCheckingUsername] = useState(false);
 
-  // Debounced email availability check
   useEffect(() => {
     if (!validateEmail(email) || view !== "signup") return;
     setCheckingEmail(true);
@@ -34,7 +33,6 @@ function LoginView(props) {
     return () => clearTimeout(timeout);
   }, [email, view]);
 
-  // Debounced username availability check
   useEffect(() => {
     if (!validateUsername(username) || view !== "signup") return;
     setCheckingUsername(true);

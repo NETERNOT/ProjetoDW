@@ -3,10 +3,8 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
   const [commentText, setCommentText] = useState("");
   const [user, setUser] = useState(null);
 
-  // Clean up: Ensure we don't have bad props causing crash
   if (!recipe) return null;
 
-  // Scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -33,7 +31,6 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
     fetchUser();
   }, [userId]);
 
-  // Use reliable comparison (convert both to strings to avoid type issues with MongoDB IDs)
   if (user) {
     console.log("RecipeView Debug:");
     console.log("User Saved Recipes:", user.savedRecipes);
@@ -55,7 +52,6 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
     console.log("Toggling Save. Current state:", saved);
 
     const wasSaved = saved;
-    // Optimistic update
     const newSavedRecipes = wasSaved
       ? user.savedRecipes.filter((id) => String(id) !== String(recipe._id))
       : [...user.savedRecipes, recipe._id];
@@ -72,7 +68,6 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
         }
       );
       if (!response.ok) {
-        // Revert on failure
         setUser({ ...user, savedRecipes: user.savedRecipes });
         console.error("Failed to toggle save");
       }

@@ -3,7 +3,7 @@ const { useState, useEffect } = React;
 function RecipeCard({ recipe, onSelect, userId }) {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    if (!userId) return; // No userId, skip fetching
+    if (!userId) return;
     const fetchUser = async () => {
       try {
         const response = await fetch(`http://localhost:8000/api/getUser`, {
