@@ -38,7 +38,7 @@ function App() {
         <HomeView recipes={recipes} userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
 
       {view === "recipe" &&
-        <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} onBack={() => setView("home")} />}
+        <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} onBack={() => setView("home")} userId={userId} />}
 
       {(view === "login" || view == "signup") && (
         <LoginView
