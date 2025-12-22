@@ -4,12 +4,11 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("login");
+  const [view, setView] = useState("home");
 
   const [loginImage, setLoginImage] = useState(null);
 
-  const [userId, setUserId] = useState(null)
-
+  const [userId, setUserId] = useState("6942a56f007469514fedf385");
 
   // Fetch data when app starts
   useEffect(() => {
@@ -33,13 +32,7 @@ function App() {
   }, [recipes.length]);
 
   return (
-    <div className="container">
-      {view === "home" &&
-        <HomeView recipes={recipes} userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }} onSelectNew={() => document.querySelector(".newRecipeContainer").classList.remove("hidden")} onCloseNew={() => document.querySelector(".newRecipeContainer").classList.add("hidden")} />}
-
-      {view === "recipe" &&
-        <RecipeView recipe={recipes.find((recipe) => recipe._id === recipeId)} onBack={() => setView("home")} userId={userId} />}
-
+    <div className="app-container">
       {(view === "login" || view == "signup") && (
         <LoginView
           view={view}
@@ -49,9 +42,46 @@ function App() {
         ></LoginView>
       )}
 
-      {view==="profile" && 
-        <ProfileView userId={userId} onSelect={(id) => { setRecipeId(id); setView("recipe") }}></ProfileView>
-      }
+      {view !== "login" && <NavBar setView={setView} setUserId={setUserId}></NavBar>}
+
+      {view === "home" && (
+        <HomeView
+          recipes={recipes}
+          userId={userId}
+          onSelect={(id) => {
+            setRecipeId(id);
+            setView("recipe");
+          }}
+          onSelectNew={() =>
+            document
+              .querySelector(".newRecipeContainer")
+              .classList.remove("hidden")
+          }
+          onCloseNew={() =>
+            document
+              .querySelector(".newRecipeContainer")
+              .classList.add("hidden")
+          }
+        />
+      )}
+
+      {view === "recipe" && (
+        <RecipeView
+          recipe={recipes.find((recipe) => recipe._id === recipeId)}
+          onBack={() => setView("home")}
+          userId={userId}
+        />
+      )}
+
+      {view === "profile" && (
+        <ProfileView
+          userId={userId}
+          onSelect={(id) => {
+            setRecipeId(id);
+            setView("recipe");
+          }}
+        ></ProfileView>
+      )}
     </div>
   );
 }

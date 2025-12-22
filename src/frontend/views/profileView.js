@@ -92,7 +92,7 @@ function ProfileView({ userId , onSelect}) {
   const showNoSavedRecipes = !user || user.savedRecipes.length === 0;
 
   return (
-    <div className="profileViewContainer">
+    <div className="view-container profileViewContainer">
       <div className="userInfoContainer">
         <div>
           <div className="iconContainer">
