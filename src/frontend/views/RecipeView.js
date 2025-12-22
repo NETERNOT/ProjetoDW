@@ -13,7 +13,7 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
     if (!userId) return;
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:80/api/getUser`, {
+        const response = await fetch(`/api/getUser`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: userId }),
@@ -60,7 +60,7 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
 
     try {
       const response = await fetch(
-        `http://localhost:80/api/toggleSavedRecipe`,
+        `/api/toggleSavedRecipe`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -82,7 +82,7 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
     if (!commentText.trim()) return;
 
     try {
-      const response = await fetch("http://localhost:80/api/comments", {
+      const response = await fetch("/api/comments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

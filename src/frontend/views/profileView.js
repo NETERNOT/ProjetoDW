@@ -8,7 +8,7 @@ function ProfileView({ userId, onSelect }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:80/api/getUser`, {
+        const response = await fetch(`/api/getUser`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: userId }),
@@ -35,7 +35,7 @@ function ProfileView({ userId, onSelect }) {
       }
       console.log("Fetching saved recipes with idList:", user.savedRecipes);
       try {
-        const response = await fetch(`http://localhost:80/api/recipesById`, {
+        const response = await fetch(`/api/recipesById`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ idList: user.savedRecipes }),
@@ -63,7 +63,7 @@ function ProfileView({ userId, onSelect }) {
         return;
       }
       try {
-        const response = await fetch(`http://localhost:80/api/getRecipesByCreator`, {
+        const response = await fetch(`/api/getRecipesByCreator`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ creatorId: userId }),

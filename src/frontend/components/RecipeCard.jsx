@@ -6,7 +6,7 @@ function RecipeCard({ recipe, onSelect, userId }) {
     if (!userId) return;
     const fetchUser = async () => {
       try {
-        const response = await fetch(`http://localhost:80/api/getUser`, {
+        const response = await fetch(`/api/getUser`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: userId }),
@@ -39,7 +39,7 @@ function RecipeCard({ recipe, onSelect, userId }) {
     setUser({ ...user, savedRecipes: newSavedRecipes });
 
     try {
-      const response = await fetch(`http://localhost:80/api/toggleSavedRecipe`, {
+      const response = await fetch(`/api/toggleSavedRecipe`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, recipeId: recipe._id }),
