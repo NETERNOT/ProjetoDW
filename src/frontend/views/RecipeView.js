@@ -6,6 +6,11 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
   // Clean up: Ensure we don't have bad props causing crash
   if (!recipe) return null;
 
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     if (!userId) return;
     const fetchUser = async () => {
@@ -28,16 +33,31 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
     fetchUser();
   }, [userId]);
 
-  const saved = user ? user.savedRecipes.includes(recipe._id) : false;
+  // Use reliable comparison (convert both to strings to avoid type issues with MongoDB IDs)
+  if (user) {
+    console.log("RecipeView Debug:");
+    console.log("User Saved Recipes:", user.savedRecipes);
+    console.log("Current Recipe ID:", recipe._id);
+    console.log("Recipe ID Type:", typeof recipe._id);
+    if (user.savedRecipes.length > 0) {
+      console.log("Saved Recipe Type:", typeof user.savedRecipes[0]);
+    }
+  }
+  const saved = user && user.savedRecipes ? user.savedRecipes.some(id => String(id) === String(recipe._id)) : false;
 
   const toggleSave = async (e) => {
     e.stopPropagation();
-    if (!user) return; // Can't save if not logged in
+    if (!user) {
+      console.log("User not logged in, cannot save");
+      return;
+    }
+
+    console.log("Toggling Save. Current state:", saved);
 
     const wasSaved = saved;
     // Optimistic update
     const newSavedRecipes = wasSaved
-      ? user.savedRecipes.filter((id) => id !== recipe._id)
+      ? user.savedRecipes.filter((id) => String(id) !== String(recipe._id))
       : [...user.savedRecipes, recipe._id];
 
     setUser({ ...user, savedRecipes: newSavedRecipes });
@@ -119,8 +139,8 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
             </div>
           </div>
 
-          <div className="save">
-            <span className="material-icons" onClick={toggleSave}>
+          <div className="save" onClick={toggleSave}>
+            <span className="material-icons">
               {saved ? "bookmark" : "bookmark_border"}
             </span> {saved ? "Saved" : "Save"}
           </div>

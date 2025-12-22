@@ -20,14 +20,14 @@
     &>span:first-child {
         position: absolute;
         left: 0.8em;
-        color: var(--lightgray);
+        color: var(--gray);
         font-size: 1.3em;
     }
 
     &>input {
-        border: 1px solid var(--lightgray);
+        border: 1px solid var(--gray);
         font-size: 1em;
-        color: var(--lightgray);
+        color: var(--gray);
         width: 50%;
         height: 2em;
         border-radius: 0.75em;
@@ -67,7 +67,7 @@
         width: 50px;
         padding-left: 0.5em;
         height: 25px;
-        border: 1px solid var(--lightgray);
+        border: 1px solid var(--gray);
         border-radius: 0.4em;
     }
 }
