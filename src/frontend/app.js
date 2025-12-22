@@ -42,7 +42,9 @@ function App() {
         ></LoginView>
       )}
 
-      {view !== "login" && <NavBar setView={setView} setUserId={setUserId}></NavBar>}
+      {view !== "login" && view !== "signup" && (
+        <NavBar setView={setView} setUserId={setUserId}></NavBar>
+      )}
 
       {view === "home" && (
         <HomeView

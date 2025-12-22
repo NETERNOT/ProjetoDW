@@ -24,6 +24,7 @@ async function getUser(req, res, body) {
   try {
     const db = getDatabase();
     const { id } = body;
+    console.log("Requested user id:", id); // Add this
     const user = await db
       .collection(COLLECTION_NAME)
       .findOne({ _id: new ObjectId(id) });
@@ -112,15 +113,19 @@ async function signup(req, res, body) {
     }
 
     // Insert user with username field
-    const result = await db
+    const user = await db
       .collection(COLLECTION_NAME)
       .insertOne({ username: username, email, password, savedRecipes: [] });
+
+    console.log('User created with id:', user.insertedId.toString());  // Fix this
 
     res.writeHead(201, { "Content-Type": "application/json" });
     res.end(
       JSON.stringify({
         message: "User created successfully",
-        userId: result.insertedId,
+        user: {
+          id: user.insertedId,  // Fix: was result.insertedId
+        },
       })
     );
   } catch (error) {
@@ -174,7 +179,9 @@ async function toggleSavedRecipe(req, res, body) {
       return;
     }
 
-    const user = await db.collection(COLLECTION_NAME).findOne({ _id: new ObjectId(userId) });
+    const user = await db
+      .collection(COLLECTION_NAME)
+      .findOne({ _id: new ObjectId(userId) });
 
     if (!user) {
       res.writeHead(404, { "Content-Type": "application/json" });
@@ -191,13 +198,20 @@ async function toggleSavedRecipe(req, res, body) {
     }
 
     // Update the user in DB
-    await db.collection(COLLECTION_NAME).updateOne(
-      { _id: new ObjectId(userId) },
-      { $set: { savedRecipes: user.savedRecipes } }
-    );
+    await db
+      .collection(COLLECTION_NAME)
+      .updateOne(
+        { _id: new ObjectId(userId) },
+        { $set: { savedRecipes: user.savedRecipes } }
+      );
 
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ message: "Saved recipes updated", savedRecipes: user.savedRecipes }));
+    res.end(
+      JSON.stringify({
+        message: "Saved recipes updated",
+        savedRecipes: user.savedRecipes,
+      })
+    );
   } catch (error) {
     console.error(error);
     res.writeHead(500);
