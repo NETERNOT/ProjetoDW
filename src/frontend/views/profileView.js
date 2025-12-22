@@ -1,6 +1,6 @@
 const { useState, useEffect } = React;
 
-function ProfileView({ userId , onSelect}) {
+function ProfileView({ userId, onSelect }) {
   const [user, setUser] = useState(null);
   const [savedRecipes, setSavedRecipes] = useState([]);
   const [createdRecipes, setCreatedRecipes] = useState([]);
@@ -33,7 +33,7 @@ function ProfileView({ userId , onSelect}) {
         setSavedRecipes([]);
         return;
       }
-      console.log("Fetching saved recipes with idList:", user.savedRecipes); // Add this
+      console.log("Fetching saved recipes with idList:", user.savedRecipes);
       try {
         const response = await fetch(`http://localhost:8000/api/recipesById`, {
           method: "POST",
@@ -130,11 +130,11 @@ function ProfileView({ userId , onSelect}) {
         {user && user.savedRecipes.length > 0 && (
           <>
             {savedRecipes.map((recipe) => (
-               <RecipeCard
-                        key={recipe._id}
-                        recipe={recipe}
-                        onSelect={() => onSelect(recipe._id)}
-                        userId={userId} />
+              <RecipeCard
+                key={recipe._id}
+                recipe={recipe}
+                onSelect={() => onSelect(recipe._id)}
+                userId={userId} />
             ))}
           </>
         )}

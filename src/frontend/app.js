@@ -9,9 +9,8 @@ function App() {
   const [loginImage, setLoginImage] = useState(null);
 
   const [userId, setUserId] = useState(null);
-  const [comments, setComments] = useState([]); // Add comments state
+  const [comments, setComments] = useState([]);
 
-  // Fetch data when app starts
   const [refreshRecipes, setRefreshRecipes] = useState(0);
 
   useEffect(() => {
