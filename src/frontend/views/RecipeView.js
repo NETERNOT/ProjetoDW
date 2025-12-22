@@ -111,7 +111,7 @@ function RecipeView({ recipe, comments, userId, onBack, onCommentPosted }) {
   };
 
   return (
-    <div className="recipeDetailsContainer">
+    <div className="view-container">
       <a onClick={onBack}>
         <span className="material-icons">arrow_back</span>
         <span>Back</span>

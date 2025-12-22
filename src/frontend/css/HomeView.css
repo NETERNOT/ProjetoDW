@@ -1,5 +1,7 @@
 .newRecipeButton {
     position: fixed;
+    left: 62.5%;
+    transform: translateX(-50%);
     margin-left: auto;
     margin-right: auto;
     bottom: 1em;
@@ -15,7 +17,6 @@
 }
 
 .recipeGrid {
-    margin-top: 7.5em;
     width: 95%;
     column-width: 300px;
     column-gap: 15px;

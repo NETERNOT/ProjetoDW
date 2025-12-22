@@ -41,7 +41,7 @@ function HomeView({ recipes, userId, onSelect, onSelectNew, onCloseNew }) {
     });
 
     return (
-        <div className="container">
+        <div className="view-container">
             <FilterTab tags={tags}
                 filters={filters}
                 onFilterChange={handleFilterChange}
