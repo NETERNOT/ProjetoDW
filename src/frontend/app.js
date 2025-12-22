@@ -4,11 +4,11 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [recipeId, setRecipeId] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [view, setView] = useState("home");
+  const [view, setView] = useState("login");
 
   const [loginImage, setLoginImage] = useState(null);
 
-  const [userId, setUserId] = useState("6942a56f007469514fedf385");
+  const [userId, setUserId] = useState(null);
 
   // Fetch data when app starts
   useEffect(() => {
