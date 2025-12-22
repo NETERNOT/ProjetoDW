@@ -1,14 +1,14 @@
 const http = require('http');
 const fileSystem = require('fs');
 const path = require('path');
-const PORT = 8000
+const PORT = 80
 
 const { connectToDatabase } = require('./database');
 const recipeController = require('./controllers/recipeController');
 const userController = require('./controllers/userController');
 const commentsController = require('./controllers/commentsController');
 
-const SERVER_PORT = PORT || 8000;
+const SERVER_PORT = PORT || 80;
 const FRONTEND_DIRECTORY_PATH = path.join(__dirname, '../frontend');
 
 const mimeTypes = {

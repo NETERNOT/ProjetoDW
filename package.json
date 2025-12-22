@@ -7,8 +7,8 @@
     "start": "node src/backend/server.js",
     "server": "node src/backend/server.js",
     "app:electron": "concurrently \"npm run server\" \"electron .\"",
-    "app:browser": "concurrently \"npm run server\" \"npx open-cli http://localhost:8000\"",
-    "dev": "concurrently \"npm run server\" \"electron .\" \"npx open-cli http://localhost:8000\""
+    "app:browser": "concurrently \"npm run server\" \"npx open-cli http://localhost:80\"",
+    "dev": "concurrently \"npm run server\" \"electron .\" \"npx open-cli http://localhost:80\""
   },
   "keywords": [],
   "author": "Group Project",

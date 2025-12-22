@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/recipes");
+        const response = await fetch("http://localhost:80/api/recipes");
         const data = await response.json();
         setRecipes(data);
         setLoading(false);
@@ -39,7 +39,7 @@ function App() {
     if (view === "recipe" && recipeId) {
       const fetchComments = async () => {
         try {
-          const response = await fetch("http://localhost:8000/api/comments");
+          const response = await fetch("http://localhost:80/api/comments");
           const data = await response.json();
 
           const filteredComments = data.filter(comment => {

@@ -10,7 +10,7 @@ function NewRecipe({ onClose, userId, onRecipeCreated }) {
     const [instructions, setInstructions] = React.useState(['']);
 
     React.useEffect(() => {
-        fetch('http://localhost:8000/api/tags')
+        fetch('http://localhost:80/api/tags')
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data)) {
@@ -77,7 +77,7 @@ function NewRecipe({ onClose, userId, onRecipeCreated }) {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/api/recipes', {
+            const response = await fetch('http://localhost:80/api/recipes', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

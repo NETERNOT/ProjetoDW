@@ -17,7 +17,7 @@ function LoginView(props) {
     setCheckingEmail(true);
     const timeout = setTimeout(async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/check-email", {
+        const response = await fetch("http://localhost:80/api/check-email", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
@@ -38,7 +38,7 @@ function LoginView(props) {
     setCheckingUsername(true);
     const timeout = setTimeout(async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/check-username", {
+        const response = await fetch("http://localhost:80/api/check-username", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username: username }),
@@ -101,7 +101,7 @@ function LoginView(props) {
         ? { email, password }
         : { email, username: username, password };
 
-      const response = await fetch(`http://localhost:8000${endpoint}`, {
+      const response = await fetch(`http://localhost:80${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
